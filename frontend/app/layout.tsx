@@ -18,18 +18,19 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "Pritam Maji",
-    "Full Stack Developer",
-    "Creative Designer",
-    "Next.js Developer",
+    "Computer Science Student",
+    "Web Developer",
     "React Developer",
-    "3D Portfolio",
-    "Web Developer India",
+    "JavaScript",
+    "C++",
+    "MongoDB",
+    "Portfolio India",
   ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
     url: site.url,
     siteName: site.name,
     title: site.title,
@@ -41,7 +42,6 @@ export const metadata: Metadata = {
     title: site.title,
     description: site.description,
     images: ["/opengraph-image"],
-    creator: "@pritammaji",
   },
   robots: {
     index: true,
@@ -72,23 +72,26 @@ const personJsonLd = {
   "@type": "Person",
   name: site.name,
   url: site.url,
-  jobTitle: "Full Stack Developer",
+  jobTitle: "Computer Science Student & Developer",
   email: `mailto:${site.email}`,
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Hooghly",
     addressRegion: "West Bengal",
+    postalCode: "712416",
     addressCountry: "IN",
   },
-  sameAs: Object.values(site.socials),
+  sameAs: [site.github],
   knowsAbout: [
+    "C",
+    "C++",
+    "HTML",
+    "CSS",
     "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
+    "React.js",
     "MongoDB",
-    "Three.js",
-    "UI/UX Design",
+    "MySQL",
+    "Web Development",
   ],
 };
 
@@ -107,13 +110,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="noise min-h-screen bg-base font-body text-fg antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider>
           <SmoothScroll>
             <LoadingScreen />
             <ScrollProgress />
             <CursorGlow />
             <Navbar />
-            {children}
+            <main id="main">{children}</main>
             <Footer />
             <ScrollToTop />
           </SmoothScroll>

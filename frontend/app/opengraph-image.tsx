@@ -66,17 +66,17 @@ export default function og() {
         </div>
         <div
           style={{
-            fontSize: "76px",
+            fontSize: "72px",
             fontWeight: 900,
             lineHeight: 1.05,
             letterSpacing: "-2px",
           }}
         >
-          Full Stack Developer
+          Computer Science
         </div>
         <div
           style={{
-            fontSize: "76px",
+            fontSize: "72px",
             fontWeight: 900,
             lineHeight: 1.05,
             letterSpacing: "-2px",
@@ -85,10 +85,10 @@ export default function og() {
             WebkitTextFillColor: "transparent",
           }}
         >
-          & Creative Designer
+          Student & Developer
         </div>
         <div style={{ marginTop: "28px", fontSize: "22px", color: "#a5aaba" }}>
-          Next.js · Three.js · TypeScript · Node.js · MongoDB
+          C · C++ · JavaScript · React.js · MongoDB · MySQL
         </div>
       </div>
     ),
