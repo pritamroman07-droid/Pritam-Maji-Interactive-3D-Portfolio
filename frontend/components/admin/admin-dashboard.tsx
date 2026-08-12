@@ -1,42 +1,167 @@
 "use client";
 
 import { useState } from "react";
-import { BarChart3, Inbox, Mail, RefreshCw, Trash2, Users } from "lucide-react";
+import {
+  BarChart3,
+  Inbox,
+  Lock,
+  LogOut,
+  Mail,
+  RefreshCw,
+  Trash2,
+  User,
+  Users,
+} from "lucide-react";
+import { api } from "@/lib/api";
 import { formatDate, maskEmail } from "@/lib/utils";
-import type { ContactMessage } from "@/lib/db";
 
-export function AdminDashboard({ initialStats }: { initialStats: { visitors: number; messages: number } }) {
-  const [messages, setMessages] = useState<ContactMessage[]>([]);
+type Message = {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  createdAt: string;
+};
+
+const TOKEN_KEY = "pm-admin-token";
+
+export function AdminApp() {
+  const [token, setToken] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem(TOKEN_KEY);
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
+  };
+
+  return token ? <Dashboard token={token} onLogout={handleLogout} /> : <Login onSuccess={setToken} />;
+}
+
+/* ── Login ─────────────────────────────────────────────────── */
+
+function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const { token } = await api.login(username, password);
+      localStorage.setItem(TOKEN_KEY, token);
+      onSuccess(token);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputClass =
+    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm outline-none transition placeholder:text-faint focus:border-accent/60";
+
+  return (
+    <div className="flex min-h-[70vh] items-center justify-center">
+      <form onSubmit={submit} className="glass w-full max-w-sm rounded-3xl p-8">
+        <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent/25 to-accent-alt/25 text-accent shadow-glow">
+          <Lock size={22} aria-hidden />
+        </div>
+        <h1 className="text-center font-display text-2xl font-bold">Admin Login</h1>
+        <p className="mt-1 text-center text-sm text-faint">
+          Restricted area — credentials live in the API&apos;s environment.
+        </p>
+
+        <div className="mt-6 space-y-4">
+          <div>
+            <label htmlFor="admin-user" className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted">
+              <User size={12} aria-hidden />
+              Username
+            </label>
+            <input
+              id="admin-user"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              autoComplete="username"
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <label htmlFor="admin-pass" className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted">
+              <Lock size={12} aria-hidden />
+              Password
+            </label>
+            <input
+              id="admin-pass"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              className={inputClass}
+            />
+          </div>
+        </div>
+
+        {error && (
+          <p role="alert" className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 p-3 text-sm text-red-300">
+            {error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="mt-6 w-full rounded-xl bg-gradient-to-r from-accent to-accent-alt py-3 font-semibold text-white shadow-glow transition hover:shadow-glow-lg disabled:opacity-60"
+        >
+          {loading ? "Signing in…" : "Sign In"}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+/* ── Dashboard ──────────────────────────────────────────────── */
+
+function Dashboard({ token, onLogout }: { token: string; onLogout: () => void }) {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
 
   const load = async () => {
+    setLoaded(false);
     try {
-      const res = await fetch("/admin/api/messages");
-      const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || "Failed to load");
+      const data = await api.getMessages(token);
       setMessages(data.messages);
-      setLoaded(true);
-    } catch {
-      setError("Could not load messages. Check the admin credentials.");
-      setLoaded(true);
-    }
-  };
-
-  const remove = async (id: string) => {
-    setDeleting(id);
-    try {
-      await fetch(`/admin/api/messages?id=${encodeURIComponent(id)}`, { method: "DELETE" });
-      setMessages((m) => m.filter((x) => x.id !== id));
+      setError("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load messages");
+      if (err instanceof Error && err.message.includes("token")) onLogout();
     } finally {
-      setDeleting(null);
+      setLoaded(true);
     }
   };
 
   if (!loaded) {
     load();
   }
+
+  const remove = async (id: string) => {
+    setDeleting(id);
+    try {
+      await api.deleteMessage(token, id);
+      setMessages((m) => m.filter((x) => x.id !== id));
+    } finally {
+      setDeleting(null);
+    }
+  };
 
   const byDay = messages.reduce<Record<string, number>>((acc, m) => {
     const day = new Date(m.createdAt).toISOString().slice(0, 10);
@@ -48,24 +173,33 @@ export function AdminDashboard({ initialStats }: { initialStats: { visitors: num
 
   const cards = [
     { label: "Total Messages", value: messages.length, icon: Inbox, tint: "text-accent" },
-    { label: "Visitors", value: initialStats.visitors, icon: Users, tint: "text-accent-alt" },
     { label: "Last Day Activity", value: days.length ? byDay[days[days.length - 1]] : 0, icon: BarChart3, tint: "text-cyan-300" },
+    { label: "Session", value: "12h", icon: Lock, tint: "text-accent-alt" },
   ];
 
   return (
-    <div className="container-x py-32">
+    <div>
       <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Admin Dashboard</p>
           <h1 className="mt-1 font-display text-4xl font-bold">Message Center</h1>
         </div>
-        <button
-          onClick={load}
-          className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-sm transition hover:border-accent/60"
-        >
-          <RefreshCw size={14} aria-hidden />
-          Refresh
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={load}
+            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-sm transition hover:border-accent/60"
+          >
+            <RefreshCw size={14} aria-hidden />
+            Refresh
+          </button>
+          <button
+            onClick={onLogout}
+            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-sm text-muted transition hover:border-red-400/60 hover:text-red-400"
+          >
+            <LogOut size={14} aria-hidden />
+            Logout
+          </button>
+        </div>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-3">
@@ -85,7 +219,11 @@ export function AdminDashboard({ initialStats }: { initialStats: { visitors: num
             Contact Messages
           </h2>
 
-          {error && <p className="mb-4 rounded-xl border border-red-400/30 bg-red-400/10 p-4 text-sm text-red-300">{error}</p>}
+          {error && (
+            <p className="mb-4 rounded-xl border border-red-400/30 bg-red-400/10 p-4 text-sm text-red-300">
+              {error}
+            </p>
+          )}
 
           {loaded && messages.length === 0 && (
             <div className="glass rounded-2xl p-10 text-center text-muted">
@@ -95,7 +233,7 @@ export function AdminDashboard({ initialStats }: { initialStats: { visitors: num
 
           <ul className="space-y-4">
             {messages.map((m) => (
-              <li key={m.id} className="glass group rounded-2xl p-5">
+              <li key={m.id} className="glass rounded-2xl p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
@@ -153,14 +291,13 @@ export function AdminDashboard({ initialStats }: { initialStats: { visitors: num
           <div className="glass mt-4 rounded-2xl p-6 text-sm text-muted">
             <Mail size={16} className="mb-2 text-accent" aria-hidden />
             <p className="leading-relaxed">
-              Tip: reply directly to{" "}
-              <a className="text-accent underline-offset-2 hover:underline" href="mailto:">
-                messages
-              </a>{" "}
-              from your own mailbox — or wire the{" "}
-              <code className="rounded bg-border/40 px-1 font-mono text-xs">CONTACT_WEBHOOK_URL</code>{" "}
+              Wire the API&apos;s <code className="rounded bg-border/40 px-1 font-mono text-xs">CONTACT_WEBHOOK_URL</code>{" "}
               env var to auto-forward submissions to Discord / Slack / Zapier.
             </p>
+            <div className="mt-3 flex items-center gap-2 text-xs text-faint">
+              <Users size={12} aria-hidden />
+              Visitors counter lives in the API stats endpoint.
+            </div>
           </div>
         </div>
       </div>

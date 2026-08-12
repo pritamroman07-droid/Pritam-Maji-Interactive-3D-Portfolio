@@ -1,10 +1,10 @@
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 
 # next.js
-/.next/
+.next/
 /out/
 next-env.d.ts
 

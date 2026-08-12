@@ -5,6 +5,7 @@ import { CheckCircle2, Loader2, Mail, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { api } from "@/lib/api";
 import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -24,25 +25,15 @@ export function Contact() {
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.ok) {
-        setStatus("error");
-        setError(data.error || "Something went wrong. Please try again.");
-        return;
-      }
+      await api.sendContact(form);
       setStatus("success");
       setTimeout(() => {
         setStatus("idle");
         setForm(initialForm);
       }, 4000);
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setError("Network error — is your connection alive?");
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     }
   };
 

@@ -3,6 +3,7 @@
 import { Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
+import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 type Cell = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
@@ -37,17 +38,12 @@ export function GitHubGraph() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/api/github?username=${encodeURIComponent(username)}`)
-      .then((r) => r.json())
+    api
+      .getGithubContributions(username)
       .then((data) => {
         if (cancelled) return;
-        if (data.ok && data.contributions) {
-          setCells(data.contributions);
-          setTotal(data.totalContributions);
-        } else {
-          setCells(FALLBACK);
-          setTotal(FALLBACK.reduce((s, c) => s + c.count, 0));
-        }
+        setCells(data.contributions);
+        setTotal(data.totalContributions);
       })
       .catch(() => {
         if (!cancelled) {

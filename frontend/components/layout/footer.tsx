@@ -3,8 +3,8 @@
 import { Github, Instagram, Linkedin, Mail, MapPin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/lib/site";
-import { site } from "@/lib/site";
+import { api } from "@/lib/api";
+import { navLinks, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const socialIcons = [
@@ -26,8 +26,8 @@ export function Footer() {
       /* ignore */
     }
     if (!counted) {
-      fetch("/api/visitor", { method: "POST" })
-        .then((r) => r.json())
+      api
+        .incrementVisitors()
         .then((d) => setVisitors(d.visitors))
         .catch(() => {});
       try {
@@ -36,8 +36,8 @@ export function Footer() {
         /* ignore */
       }
     } else {
-      fetch("/api/visitor")
-        .then((r) => r.json())
+      api
+        .getVisitors()
         .then((d) => setVisitors(d.visitors))
         .catch(() => {});
     }

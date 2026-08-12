@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
 import { PrintButton } from "@/components/ui/print-button";
+import { resumeDownloadUrl } from "@/lib/api";
 import { achievements, certificates, education, projects, skills } from "@/lib/data";
 import { site } from "@/lib/site";
 
@@ -22,7 +23,7 @@ export default function ResumePage() {
         </div>
         <div className="flex gap-3">
           <a
-            href="/api/resume"
+            href={resumeDownloadUrl}
             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-alt px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
           >
             <Download size={14} aria-hidden />
