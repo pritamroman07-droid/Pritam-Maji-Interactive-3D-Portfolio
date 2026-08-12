@@ -3,8 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "@/components/theme-provider";
+import { useLenis } from "@/lib/lenis";
 import { navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,6 +29,23 @@ export function Navbar() {
     };
   }, [open]);
 
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (!href.startsWith("#")) return;
+      e.preventDefault();
+      const target = href.slice(1);
+      if (lenis) {
+        lenis.scrollTo(`#${target}`, { offset: 0 });
+      } else {
+        const el = document.getElementById(target);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      setOpen(false);
+      window.history.pushState(null, "", href);
+    },
+    [lenis],
+  );
+
   return (
     <>
       <header
@@ -38,6 +57,7 @@ export function Navbar() {
         <nav className="container-x flex items-center justify-between">
           <Link
             href="#home"
+            onClick={(e) => handleNavClick(e, "#home")}
             className="group flex items-center gap-2 font-display text-lg font-bold tracking-tight"
             aria-label="Pritam Maji — home"
           >
@@ -54,6 +74,7 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="group relative rounded-full px-4 py-2 text-sm text-muted transition hover:text-fg"
                 >
                   {link.label}
@@ -113,7 +134,7 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="block px-6 py-3 font-display text-3xl font-bold text-muted transition hover:text-fg"
                   >
                     {link.label}
