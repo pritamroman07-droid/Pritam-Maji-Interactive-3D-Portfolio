@@ -1,6 +1,6 @@
 "use client";
 
-import { Component, Suspense, useRef, type ReactNode } from "react";
+import { Component, Suspense, useEffect, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows, Float, Sparkles, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -37,15 +37,27 @@ function HeroModel() {
 
 function AbstractCore() {
   const group = useRef<THREE.Group>(null);
+  const reduced = useRef(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    reduced.current = mq.matches;
+    const onChange = (e: MediaQueryListEvent) => {
+      reduced.current = e.matches;
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useFrame((state, delta) => {
     const g = group.current;
     if (!g) return;
+    if (reduced.current) return;
     // mouse-follow rotation
     g.rotation.y += (state.pointer.x * 0.55 - g.rotation.y) * delta * 2.2;
     g.rotation.x += (state.pointer.y * -0.35 - g.rotation.x) * delta * 2.2;
     // slow self-rotation
-    g.rotation.z += delta * 0.08;
+    g.rotation.z += delta * 0.025;
   });
 
   return (
