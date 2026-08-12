@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Compass, GraduationCap, Rocket, School, Target, Wrench } from "lucide-react";
+import { Code2, Compass, GraduationCap, School, Wrench } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { about, timeline, type TimelineItem } from "@/lib/data";
 
-const phaseIcons = [School, GraduationCap, Code2, Rocket, Target];
+const phaseIcons = [School, GraduationCap, Code2];
 
 function TimelineMarker({ item, index }: { item: TimelineItem; index: number }) {
   if (item.phase === "current") {
@@ -21,11 +21,7 @@ function TimelineMarker({ item, index }: { item: TimelineItem; index: number }) 
   const Icon = phaseIcons[index % phaseIcons.length];
   return (
     <span className="absolute -left-[41px] top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-surface shadow-glow transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
-      <Icon
-        size={14}
-        className={item.phase === "future" ? "text-accent-alt" : "text-accent"}
-        aria-hidden
-      />
+      <Icon size={14} className="text-accent" aria-hidden />
     </span>
   );
 }
@@ -90,23 +86,9 @@ export function About() {
                             Current
                           </span>
                         )}
-                        {item.phase === "future" && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-alt/40 bg-accent-alt/10 px-2 py-0.5 text-[10px] font-medium text-accent-alt">
-                            <Target size={10} aria-hidden />
-                            Future Goal
-                          </span>
-                        )}
                       </div>
 
-                      <h4
-                        className={
-                          item.phase === "future"
-                            ? "mt-1.5 font-display text-lg font-bold text-accent-alt"
-                            : "mt-1.5 font-display text-lg font-bold"
-                        }
-                      >
-                        {item.title}
-                      </h4>
+                      <h4 className="mt-1.5 font-display text-lg font-bold">{item.title}</h4>
                       <p className="mt-0.5 text-sm font-semibold text-fg/80">{item.subtitle}</p>
                       <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.description}</p>
 

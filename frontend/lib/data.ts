@@ -33,7 +33,7 @@ export type TimelineItem = {
   title: string;
   subtitle: string;
   description: string;
-  phase: "past" | "current" | "future";
+  phase: "past" | "current";
   phrase?: string;
 };
 
@@ -70,14 +70,6 @@ export const timeline: TimelineItem[] = [
       "I'm continuing my Diploma while improving my programming and web development skills. I learn by building projects, experimenting with new tools, and getting a little better every day.",
     phase: "current",
     phrase: "Still learning. Still building. Still improving.",
-  },
-  {
-    year: "Future",
-    title: "B.Tech & Continuous Growth",
-    subtitle: "Future Goal",
-    description:
-      "Once I finish my Diploma, my plan is to pursue a B.Tech. My long-term goal is simple — keep learning, build better projects, and grow as a software developer.",
-    phase: "future",
   },
 ];
 
@@ -145,7 +137,6 @@ export type EducationItem = {
   status: string;
   description: string;
   subjects: string[];
-  goals: string[];
 };
 
 export const education: EducationItem[] = [
@@ -164,11 +155,6 @@ export const education: EducationItem[] = [
       "Object-Oriented Programming in C++",
       "Data Structures",
       "Database Management",
-    ],
-    goals: [
-      "Pursue a B.Tech after completing my Diploma",
-      "Keep building real-world projects",
-      "Keep improving my development skills",
     ],
   },
 ];

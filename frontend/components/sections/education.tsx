@@ -1,6 +1,6 @@
 "use client";
 
-import { Atom, BookOpen, Braces, Code2, Database, Flag, GraduationCap, Library, Network, Sigma } from "lucide-react";
+import { Atom, BookOpen, Braces, Code2, Database, GraduationCap, Library, Network, Sigma } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { education } from "@/lib/data";
@@ -69,20 +69,6 @@ export function Education() {
                         </Reveal>
                       );
                     })}
-                  </div>
-
-                  <div className="mt-8 rounded-xl border border-accent-alt/25 bg-accent-alt/5 p-4">
-                    <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent-alt">
-                      <Flag size={12} aria-hidden />
-                      Future Goal
-                    </p>
-                    <ul className="space-y-1.5">
-                      {item.goals.map((goal) => (
-                        <li key={goal} className="text-sm text-muted">
-                          {goal}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </div>
