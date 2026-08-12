@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "framer-motion";
 import { useEffect, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 
@@ -12,14 +13,16 @@ export function MagneticButton({
   className?: string;
   strength?: number;
 }) {
+  const reduced = useReducedMotion();
   const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    if (!fine) return;
+    setEnabled(window.matchMedia("(pointer: fine)").matches);
   }, []);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!enabled || reduced) return;
     const rect = e.currentTarget.getBoundingClientRect();
     setPos({
       x: (e.clientX - rect.left - rect.width / 2) * strength,

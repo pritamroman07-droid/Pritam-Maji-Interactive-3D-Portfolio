@@ -1,6 +1,6 @@
 "use client";
 
-import { Component, Suspense, useEffect, useRef, type ReactNode } from "react";
+import { Component, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows, Float, Sparkles, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -112,10 +112,20 @@ function SceneRig() {
 }
 
 export function HeroScene() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setMobile(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   return (
     <div className="absolute inset-0" aria-hidden>
       <Canvas
-        dpr={[1, 1.75]}
+        dpr={mobile ? [1, 1.35] : [1, 1.75]}
         camera={{ position: [0, 0, 7.2], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
@@ -133,7 +143,7 @@ export function HeroScene() {
           ) : (
             <AbstractCore />
           )}
-          <Sparkles count={90} scale={[14, 8, 8]} size={2.2} speed={0.35} color="#67e8f9" />
+          <Sparkles count={mobile ? 40 : 90} scale={[14, 8, 8]} size={mobile ? 1.6 : 2.2} speed={0.35} color="#67e8f9" />
           <ContactShadows position={[0, -2.35, 0]} opacity={0.45} scale={12} blur={2.6} far={4} color="#000" />
         </Suspense>
       </Canvas>

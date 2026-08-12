@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ export function TiltCard({
   glare?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
   const sx = useSpring(px, { stiffness: 200, damping: 20 });
@@ -27,6 +29,7 @@ export function TiltCard({
   const glareBackground = useMotionTemplate`radial-gradient(600px circle at ${glareX} ${glareY}, hsl(var(--accent) / 0.12), transparent 45%)`;
 
   const onMove = (e: React.MouseEvent) => {
+    if (reduced) return;
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     px.set((e.clientX - rect.left) / rect.width);
@@ -43,8 +46,13 @@ export function TiltCard({
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 900 }}
-      whileHover={{ scale: 1.02 }}
+      style={{
+        rotateX: reduced ? 0 : rotateX,
+        rotateY: reduced ? 0 : rotateY,
+        transformStyle: "preserve-3d",
+        perspective: 900,
+      }}
+      whileHover={reduced ? undefined : { scale: 1.02 }}
       className={cn("relative will-change-transform", className)}
     >
       {children}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function TypingText({
@@ -15,11 +16,16 @@ export function TypingText({
   deleteSpeed?: number;
   pause?: number;
 }) {
+  const reduced = useReducedMotion();
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    if (reduced) {
+      setText(words[0] ?? "");
+      return;
+    }
     const word = words[wordIndex % words.length];
     const timeout = setTimeout(
       () => {
@@ -39,12 +45,14 @@ export function TypingText({
       deleting ? deleteSpeed : typeSpeed,
     );
     return () => clearTimeout(timeout);
-  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause]);
+  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause, reduced]);
 
   return (
     <span className={className}>
       {text}
-      <span className="ml-0.5 inline-block h-[0.9em] w-[2px] translate-y-[0.1em] bg-accent animate-typeblink" />
+      {!reduced && (
+        <span className="ml-0.5 inline-block h-[0.9em] w-[2px] translate-y-[0.1em] bg-accent animate-typeblink" />
+      )}
     </span>
   );
 }
