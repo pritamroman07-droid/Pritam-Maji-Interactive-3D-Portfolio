@@ -1,7 +1,6 @@
 import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { Education } from "@/components/sections/education";
-import { GitHubGraph } from "@/components/sections/github-graph";
 import { Hero, TechMarquee } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
@@ -15,9 +14,6 @@ export default function Home() {
       <Skills />
       <Education />
       <Projects />
-      <div className="container-x py-24">
-        <GitHubGraph />
-      </div>
       <Contact />
     </>
   );

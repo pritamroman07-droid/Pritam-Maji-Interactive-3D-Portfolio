@@ -38,14 +38,6 @@ export const api = {
     return request<{ ok: true; visitors: number; messages: number }>("/api/stats");
   },
 
-  getGithubContributions(username: string) {
-    return request<{
-      ok: true;
-      contributions: { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }[];
-      totalContributions: number;
-    }>(`/api/github?username=${encodeURIComponent(username)}`);
-  },
-
   login(username: string, password: string) {
     return request<{ ok: true; token: string }>("/api/auth/login", {
       method: "POST",
