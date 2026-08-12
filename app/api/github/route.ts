@@ -1,0 +1,54 @@
+import { NextResponse } from "next/server";
+
+type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
+type GHWeek = { contributionDays: { date: string; contributionCount: number }[] };
+type GHResponse = { data?: { user?: { contributionsCollection?: { contributionCalendar?: { weeks?: GHWeek[] } } } } };
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const username = searchParams.get("username") || "pritammaji";
+
+  const query = `query($user: String!) {
+    user(login: $user) {
+      contributionsCollection {
+        contributionCalendar {
+          weeks { contributionDays { date contributionCount } }
+        }
+      }
+    }
+  }`;
+
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN || ""}`,
+      },
+      body: JSON.stringify({ query, variables: { user: username } }),
+      signal: AbortSignal.timeout(8000),
+    });
+
+    const data = (await res.json()) as GHResponse;
+    const weeks = data?.data?.user?.contributionsCollection?.contributionCalendar?.weeks;
+
+    if (weeks && weeks.length > 0) {
+      const contributions: Day[] = weeks.flatMap((w) =>
+        w.contributionDays.map((d) => {
+          const count = d.contributionCount;
+          return {
+            date: d.date,
+            count,
+            level: (count === 0 ? 0 : Math.min(4, 1 + Math.floor(count / 3))) as Day["level"],
+          };
+        }),
+      );
+      const total = contributions.reduce((s, d) => s + d.count, 0);
+      return NextResponse.json({ ok: true, contributions, totalContributions: total });
+    }
+
+    return NextResponse.json({ ok: false, error: "no-data" });
+  } catch {
+    return NextResponse.json({ ok: false, error: "github-unavailable" });
+  }
+}

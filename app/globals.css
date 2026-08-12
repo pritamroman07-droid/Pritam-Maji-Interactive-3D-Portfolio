@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — Dark Luxury Theme
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --bg: 250 250 252;
+  --surface: 244 244 248;
+  --fg: 10 12 20;
+  --muted: 70 76 94;
+  --faint: 148 154 172;
+  --border: 220 222 232;
+  --accent: 59 130 246;
+  --accent-alt: 168 85 247;
+  --accent-glow: 99 102 241;
+}
+
+.dark {
+  --bg: 5 5 5;
+  --surface: 12 12 16;
+  --fg: 240 242 248;
+  --muted: 165 170 186;
+  --faint: 110 115 132;
+  --border: 34 36 46;
+  --accent: 56 189 248;
+  --accent-alt: 192 132 252;
+  --accent-glow: 99 102 241;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-base font-body text-fg;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.35);
+    color: hsl(var(--fg));
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--bg));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--accent-alt)));
+    border-radius: 999px;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .section {
+    @apply relative scroll-mt-24 py-24 lg:py-32;
+  }
+
+  .glass {
+    background: hsl(var(--surface) / 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsl(var(--border) / 0.7);
+    @apply shadow-glass;
+  }
+
+  .glass-strong {
+    background: hsl(var(--surface) / 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--border) / 0.9);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent via-accent-alt to-cyan-300 bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+
+  .neon-border {
+    position: relative;
+    border: 1px solid hsl(var(--border) / 0.6);
+  }
+
+  .neon-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--accent) / 0.6), transparent 40%, hsl(var(--accent-alt) / 0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/60 px-3 py-1 text-xs font-medium text-muted;
+  }
+}
+
+/* Animated aurora background blobs */
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aurora--blue {
+  background: radial-gradient(circle at 30% 30%, #2563eb, transparent 70%);
+}
+
+.aurora--purple {
+  background: radial-gradient(circle at 70% 60%, #7c3aed, transparent 70%);
+}
+
+.aurora--cyan {
+  background: radial-gradient(circle at 50% 80%, #06b6d4, transparent 70%);
+}
+
+/* Grid backdrop */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.35) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+/* Noise overlay */
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Section heading reveal helpers */
+.heading-line {
+  @apply h-px flex-1 bg-gradient-to-r from-border to-transparent;
+}
+
+/* Print styles for the resume page */
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+}
