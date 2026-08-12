@@ -28,35 +28,56 @@ export const about = {
   ],
 };
 
-export const timeline = [
+export type TimelineItem = {
+  year: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  phase: "past" | "current" | "future";
+  phrase?: string;
+};
+
+export const timeline: TimelineItem[] = [
   {
-    year: "2021",
-    title: "First line of code",
-    description: "Wrote my first program and realised I wanted to build things with code.",
-  },
-  {
-    year: "2023",
-    title: "Started Diploma in CSE",
+    year: "2024",
+    title: "Higher Secondary Completed",
+    subtitle: "Pancharul Srhari Vidyamandir",
     description:
-      "Began my Diploma in Computer Science & Engineering, covering programming, data and web technologies.",
+      "Completed my Higher Secondary (HS) education in 2024 from Pancharul Srhari Vidyamandir.",
+    phase: "past",
   },
   {
     year: "2024",
-    title: "Web development deep-dive",
+    title: "Started Diploma in Computer Science & Engineering",
+    subtitle: "Brainware University",
     description:
-      "Focused on the frontend — HTML, CSS and JavaScript first, then React.js and modern tooling.",
+      "Joined Brainware University to pursue a Diploma in Computer Science & Engineering (CSE) — the beginning of my focused journey into computer science and software development.",
+    phase: "past",
   },
   {
     year: "2025",
-    title: "Building real projects",
+    title: "Started Web Development",
+    subtitle: "Building Real Projects",
     description:
-      "Shipped full-stack projects: a project management tool, an e-commerce platform and an AI-powered billing app.",
+      "Started learning web development and began building practical projects — improving my programming fundamentals, exploring the frontend and understanding how real applications are developed.",
+    phase: "past",
   },
   {
     year: "2026",
-    title: "Still learning, still building",
+    title: "Still Learning & Building",
+    subtitle: "Continuous Learning",
     description:
-      "Improving every day — experimenting with databases, AI APIs and production deployment.",
+      "Continuing my Diploma in Computer Science & Engineering while improving my programming and web development skills — learning by building projects, experimenting with technologies and growing every day.",
+    phase: "current",
+    phrase: "Still learning. Still building. Still improving.",
+  },
+  {
+    year: "Future",
+    title: "B.Tech & Continuous Growth",
+    subtitle: "Future Goal",
+    description:
+      "After completing my Diploma in Computer Science & Engineering, my goal is to pursue a B.Tech — continuously improving my technical skills, deepening my knowledge of computer science and building better real-world projects.",
+    phase: "future",
   },
 ];
 
@@ -130,22 +151,16 @@ export type EducationItem = {
 export const education: EducationItem[] = [
   {
     title: "Diploma in Computer Science & Engineering",
-    place: "West Bengal State Council of Technical Education",
-    period: "2023 — Present",
-    status: "Currently studying",
+    place: "Brainware University",
+    period: "Started 2024",
+    status: "Currently pursuing",
     description:
-      "A hands-on diploma covering programming, web technologies and databases. Outside the classroom, I apply what I learn by building real projects.",
-    subjects: [
-      "Programming in C",
-      "Object Oriented Programming (C++)",
-      "Data Structures",
-      "Database Management Systems",
-      "Web Technologies",
-    ],
+      "Pursuing a Diploma in Computer Science & Engineering — building my foundations in computer science, software engineering and programming through coursework and real projects.",
+    subjects: ["Software Engineering", "Physics", "Chemistry"],
     goals: [
-      "Get comfortable across the full stack",
-      "Ship more real-world projects this year",
-      "Keep improving my problem-solving skills",
+      "Pursue a B.Tech after completing my Diploma",
+      "Keep building real-world projects",
+      "Keep improving my development skills",
     ],
   },
 ];

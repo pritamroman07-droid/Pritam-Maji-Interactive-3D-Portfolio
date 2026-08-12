@@ -22,10 +22,10 @@ export const creativeSkills = [
 export const education = [
   {
     title: "Diploma in Computer Science & Engineering",
-    place: "West Bengal State Council of Technical Education",
-    period: "2023 — Present",
+    place: "Brainware University",
+    period: "2024 — Present",
     description:
-      "Core CS curriculum with programming labs in C, C++, DBMS with MySQL, and web development projects.",
+      "Pursuing a Diploma in Computer Science & Engineering — building foundations in computer science, software engineering and programming through coursework and real projects.",
   },
 ];
 

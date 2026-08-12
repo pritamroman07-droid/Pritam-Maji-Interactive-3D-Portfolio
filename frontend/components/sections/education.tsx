@@ -1,9 +1,15 @@
 "use client";
 
-import { BookOpen, Flag, GraduationCap, Library } from "lucide-react";
+import { Atom, BookOpen, Code2, Flag, GraduationCap, Library } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { education } from "@/lib/data";
+
+const subjectIcons: Record<string, typeof Code2> = {
+  "Software Engineering": Code2,
+  Physics: Atom,
+  Chemistry: Library,
+};
 
 export function Education() {
   return (
@@ -43,20 +49,28 @@ export function Education() {
 
                   <p className="mt-8 mb-3 flex items-center gap-2 font-display text-sm font-bold">
                     <Library size={15} className="text-accent" aria-hidden />
-                    Key Subjects
+                    Subjects & Areas of Study
                   </p>
-                  <ul className="flex flex-wrap gap-2">
-                    {item.subjects.map((subject) => (
-                      <li key={subject} className="chip">
-                        {subject}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    {item.subjects.map((subject) => {
+                      const Icon = subjectIcons[subject] ?? BookOpen;
+                      return (
+                        <Reveal key={subject} delay={0.1}>
+                          <div className="glass flex h-full items-center gap-3 rounded-xl px-4 py-3.5 transition hover:border-accent/50">
+                            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                              <Icon size={16} aria-hidden />
+                            </span>
+                            <p className="text-sm font-semibold leading-snug">{subject}</p>
+                          </div>
+                        </Reveal>
+                      );
+                    })}
+                  </div>
 
                   <div className="mt-8 rounded-xl border border-accent-alt/25 bg-accent-alt/5 p-4">
                     <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent-alt">
                       <Flag size={12} aria-hidden />
-                      Building Towards
+                      Future Goal
                     </p>
                     <ul className="space-y-1.5">
                       {item.goals.map((goal) => (
