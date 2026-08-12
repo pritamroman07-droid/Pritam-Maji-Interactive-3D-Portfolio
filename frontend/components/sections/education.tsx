@@ -43,7 +43,7 @@ export function Education() {
                       </h3>
                       <p className="mt-1 text-sm text-muted">{item.place}</p>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-950">
                       <BookOpen size={12} aria-hidden />
                       {item.status}
                     </span>
