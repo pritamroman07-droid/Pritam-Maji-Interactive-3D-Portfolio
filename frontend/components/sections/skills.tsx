@@ -33,7 +33,7 @@ function SkillCard({ name, description, icon, delay }: { name: string; descripti
   return (
     <Reveal delay={delay} className="h-full">
       <div className="group glass flex h-full flex-col rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow">
-        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent transition duration-300 group-hover:scale-110">
+        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/25 via-accent-alt/20 to-violet-500/25 text-white ring-1 ring-accent/20 transition duration-300 group-hover:scale-110">
           <Icon size={20} aria-hidden />
         </span>
         <h3 className="font-display text-lg font-bold">{name}</h3>
