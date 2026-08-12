@@ -1,6 +1,6 @@
 "use client";
 
-import { Atom, BookOpen, Code2, Flag, GraduationCap, Library } from "lucide-react";
+import { Atom, BookOpen, Braces, Code2, Database, Flag, GraduationCap, Library, Network, Sigma } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { education } from "@/lib/data";
@@ -9,6 +9,10 @@ const subjectIcons: Record<string, typeof Code2> = {
   "Software Engineering": Code2,
   Physics: Atom,
   Chemistry: Library,
+  Mathematics: Sigma,
+  "Object-Oriented Programming in C++": Braces,
+  "Data Structures": Network,
+  "Database Management": Database,
 };
 
 export function Education() {
@@ -51,13 +55,13 @@ export function Education() {
                     <Library size={15} className="text-accent" aria-hidden />
                     Subjects & Areas of Study
                   </p>
-                  <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                     {item.subjects.map((subject) => {
                       const Icon = subjectIcons[subject] ?? BookOpen;
                       return (
                         <Reveal key={subject} delay={0.1}>
                           <div className="glass flex h-full items-center gap-3 rounded-xl px-4 py-3.5 transition hover:border-accent/50">
-                            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/25 via-accent-alt/20 to-violet-500/25 text-white ring-1 ring-accent/20">
                               <Icon size={16} aria-hidden />
                             </span>
                             <p className="text-sm font-semibold leading-snug">{subject}</p>

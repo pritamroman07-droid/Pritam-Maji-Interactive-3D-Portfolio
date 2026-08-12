@@ -156,7 +156,15 @@ export const education: EducationItem[] = [
     status: "Currently pursuing",
     description:
       "I'm currently pursuing my Diploma in Computer Science & Engineering — learning the foundations of computer science, software engineering and programming through my coursework and personal projects.",
-    subjects: ["Software Engineering", "Physics", "Chemistry"],
+    subjects: [
+      "Software Engineering",
+      "Physics",
+      "Chemistry",
+      "Mathematics",
+      "Object-Oriented Programming in C++",
+      "Data Structures",
+      "Database Management",
+    ],
     goals: [
       "Pursue a B.Tech after completing my Diploma",
       "Keep building real-world projects",
