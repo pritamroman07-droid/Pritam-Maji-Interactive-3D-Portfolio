@@ -141,7 +141,7 @@ export function Hero() {
 
         {/* 3D — skipped entirely when the user prefers reduced motion */}
         {!reducedMotion && (
-          <div className="relative h-[420px] sm:h-[520px] lg:h-[640px]" aria-hidden>
+          <div className="relative h-[360px] sm:h-[480px] lg:h-[640px]" aria-hidden>
             <HeroScene />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-base to-transparent" />
           </div>
