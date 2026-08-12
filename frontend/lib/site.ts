@@ -2,7 +2,7 @@ export const site = {
   name: "Pritam Maji",
   title: "Pritam Maji | Computer Science Student & Developer",
   description:
-    "Pritam Maji is a Diploma in Computer Science & Engineering student building real-world web applications with React, JavaScript, C/C++ and MongoDB. Explore his projects and get in touch.",
+    "Pritam Maji is a Diploma in Computer Science & Engineering student from Hooghly, West Bengal who enjoys building web applications with JavaScript, React, C/C++ and MongoDB. Explore his projects and get in touch.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   email: "pritamroman07@gmail.com",
   location: "Hooghly, West Bengal, India — 712416",

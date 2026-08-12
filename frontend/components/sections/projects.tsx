@@ -18,7 +18,7 @@ export function Projects() {
         <SectionHeading
           eyebrow="Projects"
           title="Things I've Built"
-          description="Real projects I've worked on — from AI-powered billing to project management and e-commerce."
+          description="Projects I've actually built — from AI billing to project management and e-commerce."
         />
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -56,7 +56,7 @@ export function Projects() {
                       ))}
                     </div>
 
-                    <div className="mt-5 flex items-center gap-3 border-t border-border/50 pt-5">
+                    <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border/50 pt-5">
                       <a
                         href={project.repo}
                         target="_blank"
@@ -93,7 +93,7 @@ export function Projects() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-12 text-center text-muted">
+          <p className="mt-8 text-center text-muted">
             More experiments live on{" "}
             <a
               href="https://github.com/pritamroman07-droid"

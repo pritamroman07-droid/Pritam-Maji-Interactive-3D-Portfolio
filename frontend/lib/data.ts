@@ -3,14 +3,14 @@ export const hero = {
   name: "Pritam Maji",
   roles: ["Computer Science Student", "Developer", "Builder"],
   description:
-    "I write code, learn daily and build practical web applications — turning ideas into working products.",
+    "I'm a Diploma in CSE student who enjoys learning new technologies and turning ideas into working web applications.",
 };
 
 export const about = {
   paragraphs: [
-    "I'm Pritam Maji, a Diploma in Computer Science & Engineering student from Hooghly, West Bengal. I'm passionate about software development and modern web technologies, and I love the process of turning an idea into a working, functional product.",
-    "Most of my time goes into learning and building — writing programs in C and C++, making interactive pages with HTML, CSS and JavaScript, and exploring frameworks like React.js and databases like MongoDB and MySQL.",
-    "I believe the best way to learn is to build, so I work on real, practical projects: an AI-powered billing platform, a project management tool, an e-commerce storefront and more. Every project teaches me something new, and I'm always looking for the next thing to improve.",
+    "Hi, I'm Pritam Maji — a Diploma in Computer Science & Engineering student from Hooghly, West Bengal. I enjoy understanding how software works and building things with it.",
+    "Most of my time goes into learning and building. I write programs in C and C++, make web pages with HTML, CSS and JavaScript, and work with React.js, MongoDB and MySQL.",
+    "I believe the best way to learn is to build. So I keep making real, working projects — an AI billing app, a project management tool, an e-commerce site. Each one teaches me something new.",
   ],
   focusAreas: [
     {
@@ -19,7 +19,7 @@ export const about = {
     },
     {
       title: "How I learn",
-      text: "By building. Each project is a chance to experiment, break things and improve.",
+      text: "By building. Each project is a chance to try, break and improve.",
     },
     {
       title: "Current study",
@@ -51,7 +51,7 @@ export const timeline: TimelineItem[] = [
     title: "Started Diploma in Computer Science & Engineering",
     subtitle: "Brainware University",
     description:
-      "Joined Brainware University to pursue a Diploma in Computer Science & Engineering (CSE) — the beginning of my focused journey into computer science and software development.",
+      "In 2024, I joined Brainware University to study for my Diploma in Computer Science & Engineering (CSE). This is where my focused journey into computer science began.",
     phase: "past",
   },
   {
@@ -59,7 +59,7 @@ export const timeline: TimelineItem[] = [
     title: "Started Web Development",
     subtitle: "Building Real Projects",
     description:
-      "Started learning web development and began building practical projects — improving my programming fundamentals, exploring the frontend and understanding how real applications are developed.",
+      "In 2025, I started learning web development and building real projects — improving my programming basics, exploring the frontend, and understanding how real applications are built.",
     phase: "past",
   },
   {
@@ -67,7 +67,7 @@ export const timeline: TimelineItem[] = [
     title: "Still Learning & Building",
     subtitle: "Continuous Learning",
     description:
-      "Continuing my Diploma in Computer Science & Engineering while improving my programming and web development skills — learning by building projects, experimenting with technologies and growing every day.",
+      "I'm continuing my Diploma while improving my programming and web development skills. I learn by building projects, experimenting with new tools, and getting a little better every day.",
     phase: "current",
     phrase: "Still learning. Still building. Still improving.",
   },
@@ -76,7 +76,7 @@ export const timeline: TimelineItem[] = [
     title: "B.Tech & Continuous Growth",
     subtitle: "Future Goal",
     description:
-      "After completing my Diploma in Computer Science & Engineering, my goal is to pursue a B.Tech — continuously improving my technical skills, deepening my knowledge of computer science and building better real-world projects.",
+      "Once I finish my Diploma, my plan is to pursue a B.Tech. My long-term goal is simple — keep learning, build better projects, and grow as a software developer.",
     phase: "future",
   },
 ];
@@ -90,51 +90,51 @@ export type Skill = {
 export const skills: Skill[] = [
   {
     name: "C",
-    description: "Foundational programming — logic, pointers and structured thinking.",
-    icon: "code",
+    description: "A great place to start — logic, pointers and structured thinking.",
+    icon: "c",
   },
   {
     name: "C++",
-    description: "Object-oriented programming, STL and problem solving.",
-    icon: "code",
+    description: "Object-oriented programming and problem solving.",
+    icon: "cpp",
   },
   {
     name: "HTML",
-    description: "Semantic markup and accessible page structure.",
-    icon: "code",
+    description: "The structure and meaning of web pages.",
+    icon: "html",
   },
   {
     name: "CSS",
-    description: "Responsive layouts, modern styling and design systems.",
-    icon: "palette",
+    description: "Making websites look clean and work on any screen.",
+    icon: "css",
   },
   {
     name: "JavaScript",
-    description: "Interactive pages, DOM work and client-side logic.",
-    icon: "code",
+    description: "Making pages interactive and bringing ideas to life.",
+    icon: "js",
   },
   {
     name: "React.js",
-    description: "Component-based user interfaces with hooks and state.",
-    icon: "atom",
+    description: "Building interfaces from reusable components.",
+    icon: "react",
   },
   {
     name: "MongoDB",
-    description: "Document databases — schemas, queries and Atlas.",
-    icon: "database",
+    description: "Working with flexible, document-based data.",
+    icon: "mongo",
   },
   {
     name: "MySQL",
-    description: "Relational databases — tables, joins and constraints.",
-    icon: "database",
+    description: "Organizing data in tables and working with SQL.",
+    icon: "mysql",
   },
 ];
 
 export const creativeSkills: Skill[] = [
   {
     name: "CapCut",
-    description: "Video editing — cutting, effects, transitions and captions.",
-    icon: "scissors",
+    description: "Cutting and editing videos for social media.",
+    icon: "capcut",
   },
 ];
 
@@ -155,7 +155,7 @@ export const education: EducationItem[] = [
     period: "Started 2024",
     status: "Currently pursuing",
     description:
-      "Pursuing a Diploma in Computer Science & Engineering — building my foundations in computer science, software engineering and programming through coursework and real projects.",
+      "I'm currently pursuing my Diploma in Computer Science & Engineering — learning the foundations of computer science, software engineering and programming through my coursework and personal projects.",
     subjects: ["Software Engineering", "Physics", "Chemistry"],
     goals: [
       "Pursue a B.Tech after completing my Diploma",
@@ -182,9 +182,9 @@ export const projects: Project[] = [
   {
     id: "dukaan-sathi",
     title: "Dukaan Saathi",
-    tagline: "AI-powered billing platform for local Indian shops",
+    tagline: "AI billing for local Indian shops",
     description:
-      "A full-stack platform that turns speech into bills. Shop owners speak a customer's purchase in Bengali, Hindi or English and AI (Google Gemini) generates a structured bill in seconds — with a real-time analytics dashboard, product inventory, customer management and an AI business advisor.",
+      "A billing app for small Indian shops. Shop owners speak the items in Bengali, Hindi or English, and AI turns their words into a proper bill in seconds — with an inventory, customer list and a simple analytics dashboard.",
     image: "https://opengraph.githubassets.com/portfolio/R4NiTeXe/Dukaan_Sathi",
     repo: "https://github.com/R4NiTeXe/Dukaan_Sathi",
     owner: "R4NiTeXe",
@@ -201,9 +201,9 @@ export const projects: Project[] = [
   {
     id: "project-management-tool",
     title: "ProManager",
-    tagline: "Full-stack project management tool",
+    tagline: "Project management made simple",
     description:
-      "A production-ready MERN project management application with JWT authentication (including refresh tokens and 2FA), role-based access, kanban boards with real-time drag-and-drop, Gantt charts, a calendar view, an analytics dashboard and AI productivity insights powered by Google Gemini.",
+      "A project management tool with kanban boards, Gantt charts and team workspaces. It has secure login with 2FA, realtime updates, and simple AI suggestions to help teams stay on track.",
     image: "https://opengraph.githubassets.com/portfolio/pritamroman07-droid/Project-Management-Tool",
     repo: "https://github.com/pritamroman07-droid/Project-Management-Tool",
     owner: "pritamroman07-droid",
@@ -219,9 +219,9 @@ export const projects: Project[] = [
   {
     id: "ecommerce-web",
     title: "SweetShop",
-    tagline: "Premium MERN e-commerce platform",
+    tagline: "A complete online store",
     description:
-      "A modern e-commerce application built with the MERN stack — 100+ products, real-time search and filtering, a glassmorphism dark UI, dynamic cart, multi-step checkout and a full admin dashboard for products, orders and users.",
+      "An e-commerce store with over 100 products, easy search and filters, a smooth cart and checkout, and a full admin dashboard for managing products, orders and users.",
     image: "https://opengraph.githubassets.com/portfolio/pritamroman07-droid/E-Commers-Web",
     repo: "https://github.com/pritamroman07-droid/E-Commers-Web",
     owner: "pritamroman07-droid",
@@ -237,9 +237,9 @@ export const projects: Project[] = [
   {
     id: "xibit-2k26",
     title: "XIBIT 2K26",
-    tagline: "Voice-enabled farmer & buyer marketplace",
+    tagline: "A marketplace for farmers & buyers",
     description:
-      "A full-stack platform under the XIBIT 2K26 banner with separate farmer and buyer dashboards — an AI voice assistant built on Google Gemini, multi-language support and a MongoDB-backed Express API.",
+      "A marketplace where farmers and buyers can connect. It has separate dashboards for each side, a voice assistant powered by Gemini, and support for multiple languages.",
     image: "https://opengraph.githubassets.com/portfolio/urmipaul007/XIBIT-2k26",
     repo: "https://github.com/urmipaul007/XIBIT-2k26",
     owner: "urmipaul007",

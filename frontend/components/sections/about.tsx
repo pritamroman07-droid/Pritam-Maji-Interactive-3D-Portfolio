@@ -45,7 +45,7 @@ export function About() {
           <div>
             {about.paragraphs.map((paragraph, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <p className="mb-4 text-lg leading-relaxed text-muted">{paragraph}</p>
+                <p className="mb-4 max-w-2xl text-lg leading-relaxed text-muted">{paragraph}</p>
               </Reveal>
             ))}
 

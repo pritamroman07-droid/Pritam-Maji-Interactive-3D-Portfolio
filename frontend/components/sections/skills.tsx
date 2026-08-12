@@ -1,20 +1,35 @@
 "use client";
 
-import { Atom, Code2, Database, Palette, Scissors, type LucideIcon } from "lucide-react";
+import { Video, type LucideIcon } from "lucide-react";
+import type { IconType } from "react-icons";
+import {
+  SiC,
+  SiCplusplus,
+  SiCss,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiReact,
+} from "react-icons/si";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { creativeSkills, skills } from "@/lib/data";
 
-const iconMap: Record<string, LucideIcon> = {
-  code: Code2,
-  palette: Palette,
-  atom: Atom,
-  database: Database,
-  scissors: Scissors,
+const iconMap: Record<string, IconType | LucideIcon> = {
+  c: SiC,
+  cpp: SiCplusplus,
+  html: SiHtml5,
+  css: SiCss,
+  js: SiJavascript,
+  react: SiReact,
+  mongo: SiMongodb,
+  mysql: SiMysql,
+  capcut: Video,
 };
 
 function SkillCard({ name, description, icon, delay }: { name: string; description: string; icon: string; delay: number }) {
-  const Icon = iconMap[icon] ?? Code2;
+  const Icon = iconMap[icon] ?? Video;
   return (
     <Reveal delay={delay} className="h-full">
       <div className="group glass flex h-full flex-col rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow">
@@ -36,7 +51,7 @@ export function Skills() {
         <SectionHeading
           eyebrow="Skills"
           title="What I Work With"
-          description="The technologies I use to learn, experiment and build — growing steadily, one project at a time."
+          description="The tools I use to learn, experiment and build real things."
         />
 
         <h3 className="mb-5 font-mono text-xs uppercase tracking-[0.3em] text-muted">
