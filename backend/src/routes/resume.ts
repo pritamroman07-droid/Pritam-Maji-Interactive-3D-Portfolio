@@ -1,34 +1,34 @@
 import { Router } from "express";
-import { achievements, certificates, education, projects, skills } from "./content";
+import { achievements, certificates, creativeSkills, education, projects, skills } from "./content";
 
 const router = Router();
 
 router.get("/", (_req, res) => {
-  const work = projects.map((p) => `- ${p.title} (${p.category}): ${p.description}`).join("\n");
-  const skillList = skills.map((s) => `${s.name} (${s.level}%)`).join(", ");
+  const skillList = skills.map((s) => `- ${s.name}: ${s.description}`).join("\n");
+  const creativeList = creativeSkills.map((s) => `- ${s.name}: ${s.description}`).join("\n");
+  const work = projects.map((p) => `- ${p.title} (${p.category}):\n    ${p.description}\n    Tech: ${p.tech.join(", ")}`).join("\n");
   const edu = education.map((e) => `- ${e.title} — ${e.place} (${e.period})`).join("\n");
   const awards = achievements.map((a) => `- ${a.title} (${a.year})`).join("\n");
   const certs = certificates.map((c) => `- ${c.title} — ${c.issuer} (${c.year})`).join("\n");
 
   const resume = `PRITAM MAJI
 ============
-Full Stack Developer & Creative Designer | West Bengal, India
+Computer Science Student & Developer | Hooghly, West Bengal, India — 712416
+pritamroman07@gmail.com | github.com/pritamroman07-droid
 
 SUMMARY
 -------
-Computer Science student passionate about building immersive, high-performance web
-experiences where engineering meets design.
+Diploma in Computer Science & Engineering student who loves building practical
+web applications with C, C++, JavaScript and React.js, backed by MongoDB and
+MySQL on the data side — learning through real projects.
 
 SKILLS
 ------
+Programming & Web Development
 ${skillList}
 
-EXPERIENCE
-----------
-- Freelance Full Stack Developer (2024 — Present)
-  Designed and shipped websites, dashboards and brand identities for small businesses.
-- Institute Hackathon Champion (2025)
-  Led a 4-person team to build an AI-powered campus assistant in 24 hours.
+Creative
+${creativeList}
 
 EDUCATION
 ---------
@@ -40,11 +40,11 @@ ${work}
 
 ACHIEVEMENTS
 ------------
-${awards}
+${awards || "- None"}
 
 CERTIFICATES
 ------------
-${certs}
+${certs || "- None"}
 
 REFERENCES
 ----------

@@ -9,7 +9,7 @@ type GHResponse = {
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const username = (req.query.username as string) || "pritammaji";
+  const username = (req.query.username as string) || "pritamroman07-droid";
 
   const query = `query($user: String!) {
     user(login: $user) {

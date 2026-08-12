@@ -1,88 +1,68 @@
 /**
  * Static content used by the resume generator.
- * Mirror of frontend/src content — keep in sync manually or
+ * Mirror of frontend/lib/data.ts — keep in sync manually or
  * move to a shared CMS later.
  */
+
 export const skills = [
-  { name: "HTML", level: 95 },
-  { name: "CSS", level: 92 },
-  { name: "JavaScript", level: 90 },
-  { name: "TypeScript", level: 82 },
-  { name: "React", level: 85 },
-  { name: "Next.js", level: 84 },
-  { name: "Node.js", level: 80 },
-  { name: "Express", level: 78 },
-  { name: "MongoDB", level: 76 },
-  { name: "Git & GitHub", level: 88 },
-  { name: "C", level: 75 },
-  { name: "C++", level: 72 },
-  { name: "Java", level: 70 },
-  { name: "Python", level: 68 },
-  { name: "Figma", level: 86 },
-  { name: "Photoshop", level: 80 },
-  { name: "Illustrator", level: 74 },
-  { name: "Premiere Pro", level: 78 },
-  { name: "CapCut", level: 85 },
+  { name: "C", description: "Procedural programming foundation" },
+  { name: "C++", description: "OOP, STL, & problem solving" },
+  { name: "HTML", description: "Semantic, accessible markup" },
+  { name: "CSS", description: "Layouts, animation & design" },
+  { name: "JavaScript", description: "ES6+, async, DOM APIs" },
+  { name: "React.js", description: "Components, hooks & state" },
+  { name: "MongoDB", description: "NoSQL schemas & queries" },
+  { name: "MySQL", description: "Relational modeling & SQL" },
+];
+
+export const creativeSkills = [
+  { name: "CapCut", description: "Fast-paced video editing for social media" },
 ];
 
 export const education = [
   {
     title: "Diploma in Computer Science & Engineering",
     place: "West Bengal State Council of Technical Education",
-    period: "2023 — 2026",
-  },
-  {
-    title: "Higher Secondary Education (Science)",
-    place: "West Bengal Council of Higher Secondary Education",
-    period: "2021 — 2023",
+    period: "2023 — Present",
+    description:
+      "Core CS curriculum with programming labs in C, C++, DBMS with MySQL, and web development projects.",
   },
 ];
 
 export const projects = [
   {
-    title: "Nexus Dashboard",
+    title: "Dukaan Sathi",
+    category: "AI · Full Stack",
+    description:
+      "AI-powered billing platform for small shopkeepers — invoice in Bengali, Hindi or English using voice, powered by Gemini.",
+    tech: ["JavaScript", "Next.js", "Express", "MongoDB", "Gemini", "Cloudinary"],
+  },
+  {
+    title: "Project Management Tool",
     category: "Full Stack",
-    description: "Realtime analytics platform with MongoDB + REST API.",
+    description:
+      "Kanban & Gantt project management app with team workspaces, JWT + 2FA auth, and realtime updates via Socket.io.",
+    tech: ["JavaScript", "MongoDB", "Express", "React", "Socket.io"],
   },
   {
-    title: "Aurora Vision",
+    title: "E-Commerce Web App",
     category: "Full Stack",
-    description: "AI-powered image enhancement studio.",
+    description:
+      "Full-featured storefront with product catalog, cart, orders, and an admin dashboard for inventory management.",
+    tech: ["JavaScript", "MongoDB", "Express", "React"],
   },
   {
-    title: "Portfolio X",
-    category: "Portfolio",
-    description: "Awwwards-grade 3D portfolio with cinematic scroll.",
-  },
-  {
-    title: "FlowBoard",
-    category: "Full Stack",
-    description: "Collaborative kanban tool with realtime sync.",
-  },
-  {
-    title: "Lumina UI",
+    title: "XIBIT 2k26",
     category: "Web App",
-    description: "40+ animated, accessible React components.",
-  },
-  {
-    title: "GlowShop",
-    category: "Web App",
-    description: "Headless storefront with Stripe checkout.",
+    description:
+      "Farmer & buyer marketplace with dashboards, built on React, Vite, TypeScript and Express with a voice assistant.",
+    tech: ["TypeScript", "React", "Vite", "Express", "MongoDB"],
   },
 ];
 
-export const achievements = [
-  { title: "Institute Hackathon Champion", year: "2025" },
-  { title: "Best Mini-Project Award", year: "2024" },
-  { title: "Top 10% in Diploma", year: "2025" },
-  { title: "Web Design Contest Finalist", year: "2024" },
-];
+type ItemWithYear = { title: string; year: string };
+type Certificate = { title: string; issuer: string; year: string };
 
-export const certificates = [
-  { title: "Full Stack Web Development", issuer: "Coursera", year: "2025" },
-  { title: "React & Next.js Masterclass", issuer: "Udemy", year: "2025" },
-  { title: "JavaScript Algorithms & DSA", issuer: "freeCodeCamp", year: "2024" },
-  { title: "UI/UX Design Fundamentals", issuer: "Google", year: "2024" },
-  { title: "MongoDB University — M001", issuer: "MongoDB", year: "2024" },
-  { title: "Creative Design with Figma", issuer: "Coursera", year: "2023" },
-];
+export const achievements: ItemWithYear[] = [];
+
+export const certificates: Certificate[] = [];
