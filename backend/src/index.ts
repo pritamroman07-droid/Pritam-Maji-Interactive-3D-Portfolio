@@ -3,7 +3,6 @@ import express, { type NextFunction, type Request, type Response } from "express
 import { config } from "./config";
 import authRoutes from "./routes/auth";
 import contactRoutes from "./routes/contact";
-import githubRoutes from "./routes/github";
 import messagesRoutes from "./routes/messages";
 import resumeRoutes from "./routes/resume";
 import statsRoutes from "./routes/stats";
@@ -30,7 +29,6 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/messages", messagesRoutes);
 app.use("/api/visitor", visitorRoutes);
 app.use("/api/stats", statsRoutes);
-app.use("/api/github", githubRoutes);
 app.use("/api/resume", resumeRoutes);
 
 app.use((_req, res) => {
