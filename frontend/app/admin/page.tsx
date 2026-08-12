@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function AdminPage() {
   return (
-    <main className="min-h-screen pt-32 lg:pt-36">
+    <main className="min-h-screen pt-24 lg:pt-28">
       <div className="container-x">
         <AdminApp />
       </div>
