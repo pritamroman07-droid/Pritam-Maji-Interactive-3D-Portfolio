@@ -10,7 +10,7 @@ export function LoadingScreen() {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const start = performance.now();
-    const duration = 1400;
+    const duration = 900;
     let raf: number;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
@@ -54,8 +54,8 @@ export function LoadingScreen() {
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="mt-3 font-mono text-xs tracking-widest text-faint">
-            LOADING EXPERIENCE — {progress}%
+          <p className="mt-3 font-mono text-xs tracking-widest text-muted">
+            Loading — {progress}%
           </p>
         </motion.div>
       )}

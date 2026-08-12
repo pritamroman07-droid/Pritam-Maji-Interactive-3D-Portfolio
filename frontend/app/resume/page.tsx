@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <main className="container-x py-32 lg:py-36">
+    <main className="container-x py-16 md:py-20 lg:py-24">
       <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Resume</p>
@@ -50,8 +50,8 @@ export default function ResumePage() {
         <section className="mt-8">
           <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Summary</h3>
           <p className="mt-3 leading-relaxed text-muted">
-            Diploma in Computer Science & Engineering student who loves building practical web
-            applications. Working with C, C++, JavaScript and React.js, with MongoDB and MySQL on
+            Diploma in Computer Science & Engineering student who enjoys building practical web
+            applications. I work with C, C++, JavaScript and React.js, with MongoDB and MySQL on
             the data side — learning through real projects rather than just courses.
           </p>
         </section>
@@ -66,7 +66,7 @@ export default function ResumePage() {
                   <li key={s.name} className="flex items-center gap-2 text-sm text-muted">
                     <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
                     <span className="w-24 shrink-0 text-fg">{s.name}</span>
-                    <span className="text-faint">{s.description}</span>
+                    <span className="text-muted">{s.description}</span>
                   </li>
                 ))}
               </ul>
@@ -78,7 +78,7 @@ export default function ResumePage() {
                   <li key={s.name} className="flex items-center gap-2 text-sm text-muted">
                     <span className="h-1.5 w-1.5 rounded-full bg-accent-alt" aria-hidden />
                     <span className="w-24 shrink-0 text-fg">{s.name}</span>
-                    <span className="text-faint">{s.description}</span>
+                    <span className="text-muted">{s.description}</span>
                   </li>
                 ))}
               </ul>

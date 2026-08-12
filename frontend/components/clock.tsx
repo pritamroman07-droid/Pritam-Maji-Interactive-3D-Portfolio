@@ -20,7 +20,7 @@ export function Clock() {
   }, []);
 
   return (
-    <span className="font-mono text-xs text-faint tabular-nums" suppressHydrationWarning>
+    <span className="font-mono text-xs text-muted tabular-nums" suppressHydrationWarning>
       {time || "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
     </span>
   );

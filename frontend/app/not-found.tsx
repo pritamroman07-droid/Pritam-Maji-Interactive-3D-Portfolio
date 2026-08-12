@@ -19,12 +19,11 @@ export default function NotFound() {
         <p className="font-display text-[9rem] font-black leading-none text-gradient sm:text-[13rem]">
           404
         </p>
-        <p className="font-mono text-sm uppercase tracking-[0.35em] text-faint">
-          Lost in hyperspace
+        <p className="font-mono text-sm uppercase tracking-[0.35em] text-muted">
+          Page not found
         </p>
         <p className="mx-auto mt-4 max-w-md text-muted">
-          The page you&apos;re looking for drifted past the event horizon. Let&apos;s get you
-          back to the mission.
+          This page doesn&apos;t exist or has moved. Let&apos;s get you back home.
         </p>
         <div className="mt-8 flex justify-center gap-4">
           <Link

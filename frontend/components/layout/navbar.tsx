@@ -121,8 +121,8 @@ export function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <p className="pb-8 text-center font-mono text-xs text-faint">
-              Full Stack Developer · Creative Designer · CS Student
+            <p className="pb-8 text-center font-mono text-xs text-muted">
+              Computer Science Student · Developer · Builder
             </p>
           </motion.div>
         )}

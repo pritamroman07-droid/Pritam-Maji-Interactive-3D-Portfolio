@@ -37,6 +37,7 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       gsap.to(contentRef.current, {
         yPercent: 22,
@@ -177,7 +178,7 @@ export function TechMarquee() {
         {items.map((item, i) => (
           <span
             key={i}
-            className="font-display text-lg font-bold uppercase tracking-[0.3em] text-muted/80 transition hover:text-accent"
+            className="font-display text-lg font-bold uppercase tracking-[0.3em] text-muted transition hover:text-accent"
           >
             {item}
           </span>

@@ -64,7 +64,7 @@ function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm outline-none transition placeholder:text-faint focus:border-accent/60";
+    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm outline-none transition placeholder:text-muted focus:border-accent/60";
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
@@ -73,7 +73,7 @@ function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
           <Lock size={22} aria-hidden />
         </div>
         <h1 className="text-center font-display text-2xl font-bold">Admin Login</h1>
-        <p className="mt-1 text-center text-sm text-faint">
+        <p className="mt-1 text-center text-sm text-muted">
           Restricted area — credentials live in the API&apos;s environment.
         </p>
 
@@ -207,7 +207,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
           <div key={card.label} className="glass rounded-2xl p-6">
             <card.icon size={18} className={card.tint} aria-hidden />
             <p className="mt-3 font-display text-3xl font-black text-gradient">{card.value}</p>
-            <p className="mt-1 text-xs text-faint">{card.label}</p>
+            <p className="mt-1 text-xs text-muted">{card.label}</p>
           </div>
         ))}
       </div>
@@ -242,7 +242,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
                         {m.name}
                       </span>
                     </div>
-                    <p className="mt-0.5 text-xs text-faint">
+                    <p className="mt-0.5 text-xs text-muted">
                       {maskEmail(m.email)} · {formatDate(m.createdAt)}
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-muted">{m.message}</p>
@@ -273,7 +273,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
               <div className="flex h-44 items-end gap-2">
                 {days.map((day) => (
                   <div key={day} className="group flex flex-1 flex-col items-center gap-1">
-                    <span className="text-[10px] text-faint opacity-0 transition group-hover:opacity-100">
+                    <span className="text-[10px] text-muted opacity-0 transition group-hover:opacity-100">
                       {byDay[day]}
                     </span>
                     <div
@@ -281,7 +281,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
                       style={{ height: `${(byDay[day] / maxDay) * 100}%`, minHeight: byDay[day] > 0 ? 6 : 2 }}
                       title={`${day}: ${byDay[day]}`}
                     />
-                    <span className="text-[9px] text-faint">{day.slice(5)}</span>
+                    <span className="text-[9px] text-muted">{day.slice(5)}</span>
                   </div>
                 ))}
               </div>
@@ -294,7 +294,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
               Wire the API&apos;s <code className="rounded bg-border/40 px-1 font-mono text-xs">CONTACT_WEBHOOK_URL</code>{" "}
               env var to auto-forward submissions to Discord / Slack / Zapier.
             </p>
-            <div className="mt-3 flex items-center gap-2 text-xs text-faint">
+            <div className="mt-3 flex items-center gap-2 text-xs text-muted">
               <Users size={12} aria-hidden />
               Visitors counter lives in the API stats endpoint.
             </div>
