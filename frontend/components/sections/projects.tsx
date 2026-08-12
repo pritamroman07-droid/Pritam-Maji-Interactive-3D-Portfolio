@@ -1,30 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ExternalLink, Github, ListChecks, Search } from "lucide-react";
+import { useState } from "react";
+import { ExternalLink, Github, ListChecks } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { projectCategories, projects, type Project } from "@/lib/data";
-import { cn } from "@/lib/utils";
+import { projects, type Project } from "@/lib/data";
 
 export function Projects() {
-  const [category, setCategory] = useState("All");
-  const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Project | null>(null);
-
-  const visible = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return projects.filter(
-      (p) =>
-        (category === "All" || p.category === category) &&
-        (q === "" ||
-          p.title.toLowerCase().includes(q) ||
-          p.tagline.toLowerCase().includes(q) ||
-          p.tech.some((t) => t.toLowerCase().includes(q))),
-    );
-  }, [category, query]);
 
   return (
     <section id="projects" className="section relative">
@@ -33,70 +18,36 @@ export function Projects() {
         <SectionHeading
           eyebrow="Projects"
           title="Things I've Built"
-          description="A curated selection of work — from full stack platforms to immersive 3D experiences."
+          description="Real projects I've worked on — from AI-powered billing to project management and e-commerce."
         />
 
-        {/* Filters */}
-        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap gap-2">
-            {projectCategories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCategory(c)}
-                className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-medium transition",
-                  category === c
-                    ? "border-transparent bg-gradient-to-r from-accent to-accent-alt text-white shadow-glow"
-                    : "border-border/60 text-muted hover:border-accent/60 hover:text-fg",
-                )}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-          <div className="relative lg:w-72">
-            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-faint" aria-hidden />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search projects, tech…"
-              aria-label="Search projects"
-              className="w-full rounded-full border border-border/60 bg-surface/60 py-2.5 pl-10 pr-4 text-sm outline-none transition placeholder:text-faint focus:border-accent/60"
-            />
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((project, i) => (
-            <Reveal key={project.id} delay={Math.min(i * 0.06, 0.3)}>
-              <TiltCard className="group h-full rounded-2xl" intensity={8}>
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((project, i) => (
+            <Reveal key={project.id} delay={Math.min(i * 0.08, 0.3)}>
+              <TiltCard className="group h-full rounded-2xl" intensity={6}>
                 <article className="glass flex h-full flex-col overflow-hidden rounded-2xl transition group-hover:border-accent/50">
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-surface">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} — GitHub repository preview`}
                       loading="lazy"
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                      decoding="async"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                    {project.featured && (
-                      <span className="absolute left-4 top-4 rounded-full bg-accent/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                        Featured
-                      </span>
-                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" aria-hidden />
                     <span className="absolute bottom-4 left-4 rounded-full glass px-3 py-1 text-[11px] font-medium text-white">
-                      {project.category}
+                      {project.owner}
                     </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-xl font-bold">{project.title}</h3>
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <h3 className="font-display text-xl font-bold sm:text-2xl">{project.title}</h3>
                     <p className="mt-1 text-sm font-medium text-accent">{project.tagline}</p>
-                    <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">
+                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">
                       {project.description}
                     </p>
+
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {project.tech.map((t) => (
                         <span key={t} className="chip">
@@ -104,37 +55,35 @@ export function Projects() {
                         </span>
                       ))}
                     </div>
-                    <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4">
+
+                    <div className="mt-5 flex items-center gap-3 border-t border-border/50 pt-5">
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full btn-primary px-5 py-2.5 text-sm font-semibold"
+                      >
+                        <Github size={14} aria-hidden />
+                        View on GitHub
+                      </a>
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm font-semibold text-fg transition hover:border-accent/60"
+                        >
+                          <ExternalLink size={14} aria-hidden />
+                          Live Demo
+                        </a>
+                      )}
                       <button
                         onClick={() => setSelected(project)}
-                        className="text-sm font-semibold text-accent transition hover:opacity-80"
+                        aria-label={`Open details for ${project.title}`}
+                        className="ml-auto rounded-full border border-border/60 p-2.5 text-muted transition hover:border-accent/60 hover:text-accent"
                       >
-                        View details →
+                        <ListChecks size={15} aria-hidden />
                       </button>
-                      <div className="flex gap-2">
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${project.title} on GitHub`}
-                            className="rounded-full border border-border/60 p-2 text-muted transition hover:border-accent/60 hover:text-accent"
-                          >
-                            <Github size={14} aria-hidden />
-                          </a>
-                        )}
-                        {project.demo && (
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${project.title} live demo`}
-                            className="rounded-full border border-border/60 p-2 text-muted transition hover:border-accent/60 hover:text-accent"
-                          >
-                            <ExternalLink size={14} aria-hidden />
-                          </a>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </article>
@@ -143,21 +92,32 @@ export function Projects() {
           ))}
         </div>
 
-        {visible.length === 0 && (
-          <p className="mt-10 text-center text-muted">No projects match your filters.</p>
-        )}
+        <Reveal delay={0.2}>
+          <p className="mt-12 text-center text-muted">
+            More experiments live on{" "}
+            <a
+              href="https://github.com/pritamroman07-droid"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-accent underline-offset-4 hover:underline"
+            >
+              my GitHub
+            </a>
+            .
+          </p>
+        </Reveal>
       </div>
 
-      {/* Detail modal */}
       <Modal open={Boolean(selected)} onClose={() => setSelected(null)} labelledBy="project-modal-title">
         {selected && (
           <div>
-            <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-xl">
+            <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-xl bg-surface">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={selected.image} alt={selected.title} className="h-full w-full object-cover" />
-              <span className="absolute left-4 top-4 rounded-full bg-accent/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                {selected.category}
-              </span>
+              <img
+                src={selected.image}
+                alt={`${selected.title} — GitHub repository preview`}
+                className="h-full w-full object-cover"
+              />
             </div>
             <h3 id="project-modal-title" className="font-display text-2xl font-bold">
               {selected.title}
@@ -186,24 +146,22 @@ export function Projects() {
               ))}
             </div>
 
-            <div className="mt-8 flex gap-3">
-              {selected.github && (
-                <a
-                  href={selected.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2.5 text-sm font-semibold transition hover:border-accent/60"
-                >
-                  <Github size={14} aria-hidden />
-                  Source Code
-                </a>
-              )}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={selected.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full btn-primary px-5 py-2.5 text-sm font-semibold"
+              >
+                <Github size={14} aria-hidden />
+                View Source Code
+              </a>
               {selected.demo && (
                 <a
                   href={selected.demo}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-alt px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
+                  className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm font-semibold text-fg transition hover:border-accent/60"
                 >
                   <ExternalLink size={14} aria-hidden />
                   Live Demo

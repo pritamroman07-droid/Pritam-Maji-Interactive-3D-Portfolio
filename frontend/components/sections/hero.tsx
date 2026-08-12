@@ -23,31 +23,18 @@ const HeroScene = dynamic(() => import("@/components/three/hero-scene").then((m)
   ),
 });
 
-function RotatingQuote() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % hero.quotes.length), 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  return (
-    <div className="h-6 overflow-hidden font-mono text-sm italic text-faint">
-      <motion.div
-        key={index}
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        “{hero.quotes[index]}”
-      </motion.div>
-    </div>
-  );
-}
-
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -77,14 +64,6 @@ export function Hero() {
       <div ref={contentRef} className="container-x relative z-10 grid flex-1 items-center gap-10 pt-28 lg:grid-cols-2 lg:pt-20">
         {/* Copy */}
         <div className="relative">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            <span className="text-xs font-medium text-muted">Available for opportunities</span>
-          </div>
-
           <p className="font-mono text-sm uppercase tracking-[0.35em] text-accent">
             {hero.greeting}
           </p>
@@ -130,10 +109,10 @@ export function Hero() {
           >
             <MagneticButton>
               <Link
-                href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-alt px-7 py-3.5 font-semibold text-white shadow-glow transition hover:shadow-glow-lg"
+                href="#projects"
+                className="group inline-flex items-center gap-2 rounded-full btn-primary px-7 py-3.5 font-semibold"
               >
-                Let&apos;s Work Together
+                View My Work
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </MagneticButton>
@@ -154,16 +133,18 @@ export function Hero() {
             transition={{ duration: 1, delay: 1 }}
             className="mt-10 flex items-center justify-between gap-6 sm:max-w-md"
           >
-            <RotatingQuote />
+            <p className="font-mono text-sm italic text-muted">Learning by building.</p>
             <Clock />
           </motion.div>
         </div>
 
-        {/* 3D */}
-        <div className="relative h-[420px] sm:h-[520px] lg:h-[640px]" aria-hidden>
-          <HeroScene />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-base to-transparent" />
-        </div>
+        {/* 3D — skipped entirely when the user prefers reduced motion */}
+        {!reducedMotion && (
+          <div className="relative h-[420px] sm:h-[520px] lg:h-[640px]" aria-hidden>
+            <HeroScene />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-base to-transparent" />
+          </div>
+        )}
       </div>
 
       {/* scroll hint */}
@@ -173,7 +154,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-faint transition hover:text-accent"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-muted transition hover:text-accent"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
@@ -196,7 +177,7 @@ export function TechMarquee() {
         {items.map((item, i) => (
           <span
             key={i}
-            className="font-display text-lg font-bold uppercase tracking-[0.3em] text-faint/70 transition hover:text-accent"
+            className="font-display text-lg font-bold uppercase tracking-[0.3em] text-muted/80 transition hover:text-accent"
           >
             {item}
           </span>

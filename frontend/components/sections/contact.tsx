@@ -38,7 +38,7 @@ export function Contact() {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm outline-none transition placeholder:text-faint focus:border-accent/60";
+    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm text-fg outline-none transition placeholder:text-muted focus:border-accent/60";
 
   return (
     <section id="contact" className="section relative">
@@ -47,8 +47,8 @@ export function Contact() {
       <div className="container-x">
         <SectionHeading
           eyebrow="Contact"
-          title="Let's Create Something Together"
-          description="Have a project in mind, a role to fill, or just want to say hi? My inbox is always open."
+          title="Let's Talk"
+          description="Have a project idea, an internship opportunity, or just want to connect? My inbox is open."
         />
 
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
@@ -56,12 +56,15 @@ export function Contact() {
             <Reveal>
               <div className="glass rounded-2xl p-6 transition hover:border-accent/50">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent">
                     <Mail size={18} aria-hidden />
                   </span>
-                  <div>
-                    <p className="text-xs text-faint">Email</p>
-                    <a href={`mailto:${site.email}`} className="font-medium transition hover:text-accent">
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted">Email</p>
+                    <a
+                      href={`mailto:${site.email}`}
+                      className="block truncate font-medium transition hover:text-accent"
+                    >
                       {site.email}
                     </a>
                   </div>
@@ -71,11 +74,11 @@ export function Contact() {
             <Reveal delay={0.1}>
               <div className="glass rounded-2xl p-6 transition hover:border-accent/50">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-alt/15 text-accent-alt">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-alt/15 text-accent-alt">
                     <MapPin size={18} aria-hidden />
                   </span>
                   <div>
-                    <p className="text-xs text-faint">Location</p>
+                    <p className="text-xs text-muted">Location</p>
                     <p className="font-medium">{site.location}</p>
                   </div>
                 </div>
@@ -83,12 +86,32 @@ export function Contact() {
             </Reveal>
             <Reveal delay={0.2}>
               <div className="glass relative overflow-hidden rounded-2xl p-6">
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-faint">Availability</p>
-                <p className="mt-2 font-display text-2xl font-bold text-gradient">Open for freelance</p>
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">A little note</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Currently accepting projects, internships and collaborations starting this month.
+                  I&apos;m a student, so I may not reply instantly — but I do read every message and
+                  respond as soon as I can.
                 </p>
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/10 blur-2xl" aria-hidden />
+              </div>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="glass flex items-center gap-3 rounded-2xl p-6 transition hover:border-accent/50">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent">
+                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] fill-current" aria-hidden>
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs text-muted">GitHub</p>
+                  <a
+                    href={site.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block truncate font-medium transition hover:text-accent"
+                  >
+                    {site.githubUsername}
+                  </a>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -169,7 +192,7 @@ export function Contact() {
                     role="status"
                   >
                     <CheckCircle2 size={16} aria-hidden />
-                    Message sent! I&apos;ll get back to you within 24 hours.
+                    Message sent! I&apos;ll get back to you soon.
                   </motion.p>
                 )}
                 {status === "error" && (
@@ -190,7 +213,7 @@ export function Contact() {
                 type="submit"
                 disabled={status === "sending"}
                 whileTap={{ scale: 0.97 }}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-alt px-6 py-3.5 font-semibold text-white shadow-glow transition hover:shadow-glow-lg disabled:opacity-60 sm:w-auto"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl btn-primary px-6 py-3.5 font-semibold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
                 {status === "sending" ? (
                   <>
