@@ -118,7 +118,7 @@ function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full rounded-xl bg-gradient-to-r from-accent to-accent-alt py-3 font-semibold text-white shadow-glow transition hover:shadow-glow-lg disabled:opacity-60"
+          className="mt-6 w-full rounded-xl btn-primary py-3 font-semibold"
         >
           {loading ? "Signing in…" : "Sign In"}
         </button>

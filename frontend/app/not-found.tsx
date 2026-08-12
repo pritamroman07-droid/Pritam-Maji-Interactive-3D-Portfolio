@@ -29,7 +29,7 @@ export default function NotFound() {
         <div className="mt-8 flex justify-center gap-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-alt px-6 py-3 font-semibold text-white shadow-glow transition hover:shadow-glow-lg"
+            className="inline-flex items-center gap-2 rounded-full btn-primary px-6 py-3 font-semibold"
           >
             <ArrowLeft size={16} aria-hidden />
             Back Home

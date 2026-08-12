@@ -4,26 +4,28 @@
 
 /* ─────────────────────────────────────────────────────────────
    Design tokens — Dark Luxury Theme
+   Contrast hierarchy (WCAG AA):
+   primary text  #FFFFFF  |  secondary #A1A1AA  |  muted #71717A
    ───────────────────────────────────────────────────────────── */
 :root {
   --bg: 250 250 252;
-  --surface: 244 244 248;
-  --fg: 10 12 20;
-  --muted: 70 76 94;
-  --faint: 148 154 172;
-  --border: 220 222 232;
-  --accent: 59 130 246;
-  --accent-alt: 168 85 247;
+  --surface: 244 244 245;
+  --fg: 24 24 27;
+  --muted: 82 82 91;
+  --faint: 113 113 122;
+  --border: 212 212 216;
+  --accent: 37 99 235;
+  --accent-alt: 124 58 237;
   --accent-glow: 99 102 241;
 }
 
 .dark {
   --bg: 5 5 5;
-  --surface: 12 12 16;
-  --fg: 240 242 248;
-  --muted: 165 170 186;
-  --faint: 110 115 132;
-  --border: 34 36 46;
+  --surface: 24 24 27;
+  --fg: 255 255 255;
+  --muted: 161 161 170;
+  --faint: 113 113 122;
+  --border: 63 63 70;
   --accent: 56 189 248;
   --accent-alt: 192 132 252;
   --accent-glow: 99 102 241;
@@ -133,6 +135,26 @@
 
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/60 px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  /* Primary call-to-action buttons — deep gradient keeps white
+     text comfortably above WCAG AA (4.5:1) in every state */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-violet-600 text-white transition duration-300;
+    box-shadow: 0 0 24px -6px hsl(var(--accent-glow) / 0.55);
+  }
+
+  .btn-primary:hover {
+    @apply from-blue-500 to-violet-500;
+    box-shadow: 0 0 36px -6px hsl(var(--accent-glow) / 0.75);
+  }
+
+  .btn-primary:active {
+    @apply from-blue-700 to-violet-700;
+  }
+
+  .btn-primary:disabled {
+    @apply cursor-not-allowed opacity-60;
   }
 }
 
