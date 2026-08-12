@@ -1,29 +1,22 @@
 export const site = {
   name: "Pritam Maji",
-  title: "Pritam Maji — Full Stack Developer & Creative Designer",
+  title: "Pritam Maji | Computer Science Student & Developer",
   description:
-    "Portfolio of Pritam Maji, a full stack developer and creative designer. Explore projects, skills, achievements, education and get in touch.",
+    "Pritam Maji is a Diploma in Computer Science & Engineering student building real-world web applications with React, JavaScript, C/C++ and MongoDB. Explore his projects and get in touch.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  email: "hello@pritammaji.dev",
-  location: "West Bengal, India",
-  socials: {
-    github: "https://github.com/pritammaji",
-    linkedin: "https://linkedin.com/in/pritammaji",
-    instagram: "https://instagram.com/pritammaji",
-    x: "https://x.com/pritammaji",
-    youtube: "https://youtube.com/@pritammaji",
-  },
+  email: "pritamroman07@gmail.com",
+  location: "Hooghly, West Bengal, India — 712416",
+  locationShort: "Hooghly, West Bengal, India",
+  github: "https://github.com/pritamroman07-droid",
+  githubUsername: "pritamroman07-droid",
 };
 
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Achievements", href: "#achievements" },
   { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Certificates", href: "#certificates" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "#contact" },
 ];

@@ -1,62 +1,129 @@
 export const hero = {
   greeting: "Hello, I'm",
   name: "Pritam Maji",
-  roles: ["Full Stack Developer", "Creative Designer", "CS Student"],
+  roles: ["Computer Science Student", "Developer", "Builder"],
   description:
-    "I craft immersive digital experiences — blending clean code, cinematic motion and thoughtful design into products people love.",
-  quotes: [
-    "Code is poetry in motion.",
-    "Design is intelligence made visible.",
-    "Build things that feel alive.",
-    "Simplicity is the soul of efficiency.",
+    "I write code, learn daily and build practical web applications — turning ideas into working products.",
+};
+
+export const about = {
+  paragraphs: [
+    "I'm Pritam Maji, a Diploma in Computer Science & Engineering student from Hooghly, West Bengal. I'm passionate about software development and modern web technologies, and I love the process of turning an idea into a working, functional product.",
+    "Most of my time goes into learning and building — writing programs in C and C++, making interactive pages with HTML, CSS and JavaScript, and exploring frameworks like React.js and databases like MongoDB and MySQL.",
+    "I believe the best way to learn is to build, so I work on real, practical projects: an AI-powered billing platform, a project management tool, an e-commerce storefront and more. Every project teaches me something new, and I'm always looking for the next thing to improve.",
+  ],
+  focusAreas: [
+    {
+      title: "Where I'm headed",
+      text: "Frontend and full-stack web development — building complete, useful applications.",
+    },
+    {
+      title: "How I learn",
+      text: "By building. Each project is a chance to experiment, break things and improve.",
+    },
+    {
+      title: "Current study",
+      text: "Diploma in Computer Science & Engineering — programming, web and databases.",
+    },
   ],
 };
 
-export const stats = [
-  { label: "Projects Completed", value: 35, suffix: "+" },
-  { label: "Certificates", value: 18, suffix: "+" },
-  { label: "Coding Hours", value: 2400, suffix: "+" },
-  { label: "Happy Clients", value: 12, suffix: "+" },
+export const timeline = [
+  {
+    year: "2021",
+    title: "First line of code",
+    description: "Wrote my first program and realised I wanted to build things with code.",
+  },
+  {
+    year: "2023",
+    title: "Started Diploma in CSE",
+    description:
+      "Began my Diploma in Computer Science & Engineering, covering programming, data and web technologies.",
+  },
+  {
+    year: "2024",
+    title: "Web development deep-dive",
+    description:
+      "Focused on the frontend — HTML, CSS and JavaScript first, then React.js and modern tooling.",
+  },
+  {
+    year: "2025",
+    title: "Building real projects",
+    description:
+      "Shipped full-stack projects: a project management tool, an e-commerce platform and an AI-powered billing app.",
+  },
+  {
+    year: "2026",
+    title: "Still learning, still building",
+    description:
+      "Improving every day — experimenting with databases, AI APIs and production deployment.",
+  },
 ];
 
 export type Skill = {
   name: string;
-  level: number;
-  category: "Programming" | "Design";
+  description: string;
   icon: string;
 };
 
 export const skills: Skill[] = [
-  { name: "HTML", level: 95, category: "Programming", icon: "code" },
-  { name: "CSS", level: 92, category: "Programming", icon: "palette" },
-  { name: "JavaScript", level: 90, category: "Programming", icon: "code" },
-  { name: "TypeScript", level: 82, category: "Programming", icon: "code" },
-  { name: "React", level: 85, category: "Programming", icon: "atom" },
-  { name: "Next.js", level: 84, category: "Programming", icon: "zap" },
-  { name: "Node.js", level: 80, category: "Programming", icon: "server" },
-  { name: "Express", level: 78, category: "Programming", icon: "server" },
-  { name: "MongoDB", level: 76, category: "Programming", icon: "database" },
-  { name: "Git & GitHub", level: 88, category: "Programming", icon: "git" },
-  { name: "C", level: 75, category: "Programming", icon: "code" },
-  { name: "C++", level: 72, category: "Programming", icon: "code" },
-  { name: "Java", level: 70, category: "Programming", icon: "coffee" },
-  { name: "Python", level: 68, category: "Programming", icon: "snake" },
-  { name: "Figma", level: 86, category: "Design", icon: "pen" },
-  { name: "Photoshop", level: 80, category: "Design", icon: "image" },
-  { name: "Illustrator", level: 74, category: "Design", icon: "pen-tool" },
-  { name: "Premiere Pro", level: 78, category: "Design", icon: "video" },
-  { name: "CapCut", level: 85, category: "Design", icon: "scissors" },
+  {
+    name: "C",
+    description: "Foundational programming — logic, pointers and structured thinking.",
+    icon: "code",
+  },
+  {
+    name: "C++",
+    description: "Object-oriented programming, STL and problem solving.",
+    icon: "code",
+  },
+  {
+    name: "HTML",
+    description: "Semantic markup and accessible page structure.",
+    icon: "code",
+  },
+  {
+    name: "CSS",
+    description: "Responsive layouts, modern styling and design systems.",
+    icon: "palette",
+  },
+  {
+    name: "JavaScript",
+    description: "Interactive pages, DOM work and client-side logic.",
+    icon: "code",
+  },
+  {
+    name: "React.js",
+    description: "Component-based user interfaces with hooks and state.",
+    icon: "atom",
+  },
+  {
+    name: "MongoDB",
+    description: "Document databases — schemas, queries and Atlas.",
+    icon: "database",
+  },
+  {
+    name: "MySQL",
+    description: "Relational databases — tables, joins and constraints.",
+    icon: "database",
+  },
+];
+
+export const creativeSkills: Skill[] = [
+  {
+    name: "CapCut",
+    description: "Video editing — cutting, effects, transitions and captions.",
+    icon: "scissors",
+  },
 ];
 
 export type EducationItem = {
   title: string;
   place: string;
   period: string;
-  semester: string;
+  status: string;
   description: string;
   subjects: string[];
-  progress: number;
-  achievements: string[];
   goals: string[];
 };
 
@@ -64,37 +131,22 @@ export const education: EducationItem[] = [
   {
     title: "Diploma in Computer Science & Engineering",
     place: "West Bengal State Council of Technical Education",
-    period: "2023 — 2026",
-    semester: "Currently in 5th Semester",
+    period: "2023 — Present",
+    status: "Currently studying",
     description:
-      "Building a strong foundation in computer science with hands-on projects, competitive coding and creative technology.",
+      "A hands-on diploma covering programming, web technologies and databases. Outside the classroom, I apply what I learn by building real projects.",
     subjects: [
-      "Data Structures & Algorithms",
-      "DBMS",
-      "Operating Systems",
+      "Programming in C",
+      "Object Oriented Programming (C++)",
+      "Data Structures",
+      "Database Management Systems",
       "Web Technologies",
-      "Computer Networks",
-      "Software Engineering",
     ],
-    progress: 70,
-    achievements: [
-      "Top 10% of the class",
-      "Best Mini-Project Award",
-      "1st place in institute hackathon",
+    goals: [
+      "Get comfortable across the full stack",
+      "Ship more real-world projects this year",
+      "Keep improving my problem-solving skills",
     ],
-    goals: ["Master full-stack engineering", "Contribute to open source", "B.Tech in CSE"],
-  },
-  {
-    title: "Higher Secondary Education (Science)",
-    place: "West Bengal Council of Higher Secondary Education",
-    period: "2021 — 2023",
-    semester: "Completed",
-    description:
-      "Physics, Chemistry, Mathematics and Computer Applications — where the love for technology began.",
-    subjects: ["Physics", "Chemistry", "Mathematics", "Computer Applications"],
-    progress: 100,
-    achievements: ["Scored 92% in Board Examination"],
-    goals: [],
   },
 ];
 
@@ -104,292 +156,96 @@ export type Project = {
   tagline: string;
   description: string;
   image: string;
-  category: string;
+  repo: string;
+  owner: string;
   tech: string[];
   features: string[];
-  github?: string;
   demo?: string;
-  featured?: boolean;
 };
-
-export const projectCategories = ["All", "Web App", "Portfolio", "Full Stack", "UI/UX", "Game"];
 
 export const projects: Project[] = [
   {
-    id: "nexus-dash",
-    title: "Nexus Dashboard",
-    tagline: "Realtime analytics platform",
+    id: "dukaan-sathi",
+    title: "Dukaan Saathi",
+    tagline: "AI-powered billing platform for local Indian shops",
     description:
-      "A modern analytics dashboard with realtime charts, dark luxury UI and full CRUD for user data.",
-    image: "/covers/cover-1.svg",
-    category: "Full Stack",
-    tech: ["Next.js", "TypeScript", "MongoDB", "Tailwind"],
-    features: ["Realtime charting", "Role-based auth", "REST API", "Responsive design"],
-    github: "https://github.com/pritammaji",
-    demo: "https://example.com",
-    featured: true,
+      "A full-stack platform that turns speech into bills. Shop owners speak a customer's purchase in Bengali, Hindi or English and AI (Google Gemini) generates a structured bill in seconds — with a real-time analytics dashboard, product inventory, customer management and an AI business advisor.",
+    image: "https://opengraph.githubassets.com/portfolio/R4NiTeXe/Dukaan_Sathi",
+    repo: "https://github.com/R4NiTeXe/Dukaan_Sathi",
+    owner: "R4NiTeXe",
+    tech: ["Next.js", "Express", "Node.js", "MongoDB", "Google Gemini", "Tailwind CSS"],
+    features: [
+      "Voice-to-bill with Google Gemini",
+      "Billing in Bengali, Hindi and English",
+      "Real-time analytics dashboard",
+      "Product inventory & customer management",
+      "AI business advisor on real sales data",
+    ],
+    demo: "https://dukaan-sathi-sigma.vercel.app",
   },
   {
-    id: "lumina-ui",
-    title: "Lumina UI",
-    tagline: "Component library",
-    description: "A hand-crafted React component library with 40+ animated, accessible components.",
-    image: "/covers/cover-2.svg",
-    category: "Web App",
-    tech: ["React", "TypeScript", "Storybook", "Framer Motion"],
-    features: ["40+ components", "Dark/light theming", "Fully accessible", "Motion-first"],
-    github: "https://github.com/pritammaji",
-    featured: true,
-  },
-  {
-    id: "aurora-vision",
-    title: "Aurora Vision",
-    tagline: "AI image enhancer",
-    description: "An AI-powered image enhancement studio with filters, upscaling and batch processing.",
-    image: "/covers/cover-3.svg",
-    category: "Full Stack",
-    tech: ["Next.js", "Python", "TensorFlow.js", "Vercel"],
-    features: ["AI upscaling", "Filter presets", "Batch mode", "Cloud storage"],
-    demo: "https://example.com",
-  },
-  {
-    id: "portfolio-x",
-    title: "Portfolio X",
-    tagline: "3D immersive portfolio",
-    description: "This very website — an Awwwards-grade 3D portfolio with cinematic scroll.",
-    image: "/covers/cover-4.svg",
-    category: "Portfolio",
-    tech: ["Next.js", "Three.js", "GSAP", "Tailwind"],
-    features: ["3D hero", "Cinematic scroll", "Full SEO", "Admin dashboard"],
-    github: "https://github.com/pritammaji",
-    demo: "https://example.com",
-    featured: true,
-  },
-  {
-    id: "pixel-play",
-    title: "Pixel Play",
-    tagline: "Retro game engine",
-    description: "A tiny browser game engine with physics, sprites and a playable demo game.",
-    image: "/covers/cover-5.svg",
-    category: "Game",
-    tech: ["JavaScript", "Canvas API", "WebGL"],
-    features: ["Physics engine", "Sprite system", "Pause/Resume", "Mobile touch"],
-    github: "https://github.com/pritammaji",
-  },
-  {
-    id: "flowboard",
-    title: "FlowBoard",
-    tagline: "Kanban workspace",
-    description: "A collaborative kanban tool with drag-and-drop, labels and realtime sync.",
-    image: "/covers/cover-6.svg",
-    category: "Full Stack",
-    tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-    features: ["Drag & drop", "Realtime sync", "Board templates", "Guest sharing"],
-    demo: "https://example.com",
-  },
-  {
-    id: "glow-shop",
-    title: "GlowShop",
-    tagline: "Headless ecommerce",
-    description: "A headless storefront with a dark neon aesthetic, cart and Stripe checkout.",
-    image: "/covers/cover-7.svg",
-    category: "Web App",
-    tech: ["Next.js", "Stripe", "Sanity", "Tailwind"],
-    features: ["Headless CMS", "Stripe checkout", "Order tracking", "Dark neon UI"],
-    demo: "https://example.com",
-  },
-  {
-    id: "motion-studio",
-    title: "Motion Studio",
-    tagline: "Web animation toolkit",
-    description: "A visual tool for composing GSAP animations with timeline previews.",
-    image: "/covers/cover-8.svg",
-    category: "UI/UX",
-    tech: ["React", "GSAP", "Zustand"],
-    features: ["Visual timeline", "Preset library", "Export code", "Live preview"],
-    github: "https://github.com/pritammaji",
-  },
-];
-
-export type Achievement = {
-  id: string;
-  title: string;
-  type: string;
-  year: string;
-  description: string;
-  icon: "trophy" | "medal" | "award" | "code" | "sport" | "star";
-};
-
-export const achievements: Achievement[] = [
-  {
-    id: "ach-1",
-    title: "Institute Hackathon Champion",
-    type: "Hackathon",
-    year: "2025",
+    id: "project-management-tool",
+    title: "ProManager",
+    tagline: "Full-stack project management tool",
     description:
-      "Led a team of 4 to build an AI-powered campus assistant in 24 hours, winning 1st place among 30 teams.",
-    icon: "trophy",
+      "A production-ready MERN project management application with JWT authentication (including refresh tokens and 2FA), role-based access, kanban boards with real-time drag-and-drop, Gantt charts, a calendar view, an analytics dashboard and AI productivity insights powered by Google Gemini.",
+    image: "https://opengraph.githubassets.com/portfolio/pritamroman07-droid/Project-Management-Tool",
+    repo: "https://github.com/pritamroman07-droid/Project-Management-Tool",
+    owner: "pritamroman07-droid",
+    tech: ["React", "Express", "Node.js", "MongoDB", "Socket.io", "Redux Toolkit", "Google Gemini"],
+    features: [
+      "JWT auth with refresh tokens & 2FA",
+      "Kanban board with real-time drag-and-drop",
+      "Gantt chart and calendar views",
+      "Analytics dashboard with charts",
+      "AI productivity insights (Gemini)",
+    ],
   },
   {
-    id: "ach-2",
-    title: "Best Mini-Project Award",
-    type: "Academics",
-    year: "2024",
+    id: "ecommerce-web",
+    title: "SweetShop",
+    tagline: "Premium MERN e-commerce platform",
     description:
-      "Received the best mini-project award for an IoT-based smart attendance system using face recognition.",
-    icon: "award",
+      "A modern e-commerce application built with the MERN stack — 100+ products, real-time search and filtering, a glassmorphism dark UI, dynamic cart, multi-step checkout and a full admin dashboard for products, orders and users.",
+    image: "https://opengraph.githubassets.com/portfolio/pritamroman07-droid/E-Commers-Web",
+    repo: "https://github.com/pritamroman07-droid/E-Commers-Web",
+    owner: "pritamroman07-droid",
+    tech: ["React", "Express", "Node.js", "MongoDB", "JWT", "Tailwind CSS"],
+    features: [
+      "100+ products with search & filters",
+      "Dynamic cart and multi-step checkout",
+      "JWT authentication with sessions",
+      "Admin dashboard for full control",
+      "Dark and light theme",
+    ],
   },
   {
-    id: "ach-3",
-    title: "Top 10% in Diploma",
-    type: "Academics",
-    year: "2025",
-    description: "Ranked in the top 10% of the Computer Science department across all semesters.",
-    icon: "star",
-  },
-  {
-    id: "ach-4",
-    title: "Web Design Contest Finalist",
-    type: "Competition",
-    year: "2024",
+    id: "xibit-2k26",
+    title: "XIBIT 2K26",
+    tagline: "Voice-enabled farmer & buyer marketplace",
     description:
-      "Reached the finals of a state-level web design contest with a motion-heavy photography portfolio.",
-    icon: "medal",
-  },
-  {
-    id: "ach-5",
-    title: "100 Days of Code — 3x",
-    type: "Coding",
-    year: "2023 — 2025",
-    description:
-      "Completed the 100 Days of Code challenge three times, building and shipping a project every single day.",
-    icon: "code",
-  },
-  {
-    id: "ach-6",
-    title: "College Football Team Captain",
-    type: "Sports",
-    year: "2024",
-    description:
-      "Captained the college football team to a runner-up finish in the district inter-college tournament.",
-    icon: "sport",
-  },
-];
-
-export type Certificate = {
-  id: string;
-  title: string;
-  issuer: string;
-  year: string;
-  image: string;
-  link?: string;
-};
-
-export const certificates: Certificate[] = [
-  { id: "cert-1", title: "Full Stack Web Development", issuer: "Coursera", year: "2025", image: "/covers/cover-1.svg" },
-  { id: "cert-2", title: "React & Next.js Masterclass", issuer: "Udemy", year: "2025", image: "/covers/cover-2.svg" },
-  { id: "cert-3", title: "JavaScript Algorithms & DSA", issuer: "freeCodeCamp", year: "2024", image: "/covers/cover-3.svg" },
-  { id: "cert-4", title: "UI/UX Design Fundamentals", issuer: "Google", year: "2024", image: "/covers/cover-4.svg" },
-  { id: "cert-5", title: "MongoDB University — M001", issuer: "MongoDB", year: "2024", image: "/covers/cover-5.svg" },
-  { id: "cert-6", title: "Creative Design with Figma", issuer: "Coursera", year: "2023", image: "/covers/cover-6.svg" },
-];
-
-export type GalleryItem = { id: string; src: string; title: string; tall?: boolean };
-
-export const gallery: GalleryItem[] = [
-  { id: "g-1", src: "/covers/cover-1.svg", title: "Neon Geometry", tall: true },
-  { id: "g-2", src: "/covers/cover-2.svg", title: "Electric Bloom" },
-  { id: "g-3", src: "/covers/cover-3.svg", title: "Purple Horizon", tall: true },
-  { id: "g-4", src: "/covers/cover-4.svg", title: "Cyan Dreams" },
-  { id: "g-5", src: "/covers/cover-5.svg", title: "Violet Storm", tall: true },
-  { id: "g-6", src: "/covers/cover-6.svg", title: "Aurora Fields" },
-  { id: "g-7", src: "/covers/cover-7.svg", title: "Chromatic Waves", tall: true },
-  { id: "g-8", src: "/covers/cover-8.svg", title: "Deep Space" },
-  { id: "g-9", src: "/covers/cover-2.svg", title: "Glass Prism", tall: true },
-];
-
-export type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  quote: string;
-  initials: string;
-};
-
-export const testimonials: Testimonial[] = [
-  {
-    id: "t-1",
-    name: "Arjun Sen",
-    role: "Startup Founder",
-    quote:
-      "Pritam rebuilt our landing page and conversions jumped 40%. The 3D hero and micro-interactions are genuinely world-class.",
-    initials: "AS",
-  },
-  {
-    id: "t-2",
-    name: "Sneha Roy",
-    role: "Product Designer",
-    quote:
-      "Rare combination of designer and engineer. Every pixel is intentional and the code behind it is equally beautiful.",
-    initials: "SR",
-  },
-  {
-    id: "t-3",
-    name: "Rahul Das",
-    role: "Engineering Lead",
-    quote:
-      "Delivered ahead of schedule, documented everything, and the admin dashboard made content updates effortless.",
-    initials: "RD",
-  },
-];
-
-export const timeline = [
-  {
-    year: "2021",
-    title: "The Spark",
-    description:
-      "Wrote the first line of code in a school computer lab and instantly fell in love with programming.",
-  },
-  {
-    year: "2023",
-    title: "Diploma in CSE",
-    description:
-      "Started my diploma in Computer Science & Engineering and began building real projects.",
-  },
-  {
-    year: "2024",
-    title: "Freelance Design",
-    description:
-      "Started freelancing — shipping brand identities, UI kits and websites for small businesses.",
-  },
-  {
-    year: "2025",
-    title: "Full Stack Era",
-    description:
-      "Diving deep into Next.js, Three.js and backend engineering. Won my first hackathon.",
-  },
-  {
-    year: "2026",
-    title: "The Future",
-    description:
-      "Aiming to join a top product team, contribute to open source and build for thousands of users.",
+      "A full-stack platform under the XIBIT 2K26 banner with separate farmer and buyer dashboards — an AI voice assistant built on Google Gemini, multi-language support and a MongoDB-backed Express API.",
+    image: "https://opengraph.githubassets.com/portfolio/urmipaul007/XIBIT-2k26",
+    repo: "https://github.com/urmipaul007/XIBIT-2k26",
+    owner: "urmipaul007",
+    tech: ["React", "TypeScript", "Vite", "Express", "MongoDB", "Google Gemini"],
+    features: [
+      "Farmer and buyer dashboards",
+      "AI voice assistant (Google Gemini)",
+      "Multi-language support",
+      "Express + MongoDB backend",
+    ],
   },
 ];
 
 export const marqueeItems = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Three.js",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "Tailwind CSS",
-  "GSAP",
-  "Figma",
-  "Python",
+  "C",
   "C++",
-  "Java",
-  "Git",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React.js",
+  "MongoDB",
+  "MySQL",
+  "CapCut",
 ];
