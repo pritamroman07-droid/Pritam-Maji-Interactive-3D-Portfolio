@@ -85,8 +85,8 @@ export function About() {
                       <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-accent">
                         <span>{item.year}</span>
                         {item.phase === "current" && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
-                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" aria-hidden />
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-950">
+                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-slate-950/70" aria-hidden />
                             Current
                           </span>
                         )}
