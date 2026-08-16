@@ -114,6 +114,24 @@ function SceneRig() {
 export function HeroScene() {
   const [mobile, setMobile] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [active, setActive] = useState(true);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { rootMargin: "100px" },
+    );
+    io.observe(el);
+    const onVisibility = () => setActive(!document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -132,8 +150,9 @@ export function HeroScene() {
   }, []);
 
   return (
-    <div className="absolute inset-0" aria-hidden>
+    <div ref={wrapRef} className="absolute inset-0" aria-hidden>
       <Canvas
+        frameloop={active ? "always" : "never"}
         dpr={mobile ? [1, 1.35] : [1, 1.75]}
         camera={{ position: [0, 0, 7.2], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

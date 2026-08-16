@@ -350,6 +350,8 @@
 }
 
 /* Noise overlay */
+/* Noise overlay — promoted to its own composited layer so the
+   fixed full-screen grain never forces repaints on scroll */
 .noise::after {
   content: "";
   position: fixed;
@@ -357,6 +359,8 @@
   z-index: 90;
   pointer-events: none;
   opacity: var(--noise-opacity);
+  transform: translateZ(0);
+  will-change: transform;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
