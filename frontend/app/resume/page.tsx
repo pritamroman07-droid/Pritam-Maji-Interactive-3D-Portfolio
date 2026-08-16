@@ -90,7 +90,7 @@ export default function ResumePage() {
           <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Education</h3>
           <div className="mt-3 space-y-4">
             {education.map((e) => (
-              <div key={e.title} className="rounded-xl border border-border/50 p-4">
+              <div key={e.title} className="rounded-xl border border-border/50 bg-surface/50 p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <h4 className="font-display font-bold">{e.title}</h4>
                   <span className="font-mono text-xs text-muted">{e.period}</span>
@@ -106,7 +106,7 @@ export default function ResumePage() {
           <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Projects</h3>
           <div className="mt-3 grid gap-4 sm:grid-cols-2">
             {projects.map((p) => (
-              <div key={p.id} className="rounded-xl border border-border/50 p-4">
+              <div key={p.id} className="rounded-xl border border-border/50 bg-surface/50 p-4">
                 <div className="flex items-center justify-between gap-2">
                   <h4 className="font-display font-bold">{p.title}</h4>
                   {p.demo && (
