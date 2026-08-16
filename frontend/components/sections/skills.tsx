@@ -32,8 +32,8 @@ function SkillCard({ name, description, icon, delay }: { name: string; descripti
   const Icon = iconMap[icon] ?? Video;
   return (
     <Reveal delay={delay} className="h-full">
-      <div className="group glass flex h-full flex-col rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow">
-        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/25 via-accent-alt/20 to-violet-500/25 text-white ring-1 ring-accent/20 transition duration-300 group-hover:scale-110">
+      <div className="group skill-card">
+        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/10 via-accent-alt/8 to-violet-500/10 text-accent ring-1 ring-accent/15 transition duration-300 group-hover:scale-110 dark:from-blue-500/25 dark:via-accent-alt/20 dark:to-violet-500/25 dark:text-white dark:ring-accent/20">
           <Icon size={20} aria-hidden />
         </span>
         <h3 className="font-display text-lg font-bold">{name}</h3>
