@@ -16,7 +16,7 @@ export default function NotFound() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10"
       >
-        <p className="font-display text-[9rem] font-black leading-none text-gradient sm:text-[13rem]">
+        <p className="font-display text-[clamp(5.5rem,30vw,13rem)] font-black leading-none text-gradient">
           404
         </p>
         <p className="font-mono text-sm uppercase tracking-[0.35em] text-muted">

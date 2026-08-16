@@ -20,13 +20,13 @@ export function SectionHeading({
         </p>
       </Reveal>
       <Reveal delay={0.08}>
-        <h2 id={id} className="font-display text-3xl font-bold leading-tight sm:text-5xl">
+        <h2 id={id} className="font-display text-[clamp(1.75rem,1.2vw+1.5rem,3rem)] font-bold leading-tight">
           {title}
         </h2>
       </Reveal>
       {description && (
         <Reveal delay={0.16}>
-          <p className="mt-4 text-lg leading-relaxed text-muted">{description}</p>
+          <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">{description}</p>
         </Reveal>
       )}
     </div>
