@@ -54,6 +54,9 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    /* Ultimate safety layer — real overflow sources are fixed at the root,
+       this prevents stray scrollbars on iOS/Android edge cases. */
+    overflow-x: clip;
   }
 
   html.lenis,
@@ -67,7 +70,7 @@
 
   body {
     @apply bg-base font-body text-fg;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   ::selection {
@@ -112,6 +115,9 @@
 
   .section {
     @apply relative scroll-mt-24 py-12 md:py-16 lg:py-24;
+    /* Contain decorative blobs and animations inside the section —
+       prevents horizontal overflow without becoming a scroll container. */
+    overflow-x: clip;
   }
 
   /* Glass morphism — adapts to theme via CSS vars */
@@ -351,6 +357,24 @@
   pointer-events: none;
   opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Media & layout safety — never let content force the viewport wider */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile performance: lighter blur + less paint cost */
+@media (max-width: 640px) {
+  .glass,
+  .glass-strong {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 /* Marquee */
