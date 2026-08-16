@@ -71,13 +71,13 @@ export function Navbar() {
             </span>
           </Link>
 
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-0.5 lg:flex xl:gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="group relative rounded-full px-4 py-2 text-sm text-muted transition hover:text-fg"
+                  className="group relative rounded-full px-3 py-2 text-sm text-muted transition hover:text-fg xl:px-4"
                 >
                   {link.label}
                   <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 bg-gradient-to-r from-accent to-accent-alt transition-transform duration-300 group-hover:scale-x-100" />
