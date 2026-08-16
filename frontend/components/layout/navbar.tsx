@@ -67,7 +67,7 @@ export function Navbar() {
               P
             </span>
             <span>
-              Pritam<span className="text-accent">.</span>Maji
+              Pritam Maji
             </span>
           </Link>
 
@@ -116,7 +116,7 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between px-5 py-5">
               <span className="font-display text-lg font-bold">
-                Pritam<span className="text-accent">.</span>Maji
+                Pritam Maji
               </span>
               <button
                 onClick={() => setOpen(false)}

@@ -42,7 +42,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-2xl font-bold">
-              Pritam<span className="text-accent">.</span>Maji
+              Pritam Maji
             </p>
             <p className="mt-4 max-w-sm leading-relaxed text-muted">
               Computer Science student and developer — building real-world web applications and
