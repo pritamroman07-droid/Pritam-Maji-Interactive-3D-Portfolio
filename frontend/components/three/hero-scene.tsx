@@ -35,7 +35,7 @@ function HeroModel() {
   );
 }
 
-function AbstractCore() {
+function AbstractCore({ mobile = false }: { mobile?: boolean }) {
   const group = useRef<THREE.Group>(null);
   const reduced = useRef(false);
 
@@ -64,7 +64,7 @@ function AbstractCore() {
     <group ref={group} position={[0, 0, 0]}>
       <Float speed={1.6} rotationIntensity={0.5} floatIntensity={1.2}>
         <mesh>
-          <torusKnotGeometry args={[1.15, 0.34, 220, 32]} />
+          <torusKnotGeometry args={[1.15, 0.34, mobile ? 96 : 220, mobile ? 20 : 32]} />
           <meshStandardMaterial
             color="#1a1a2e"
             metalness={0.9}
@@ -81,7 +81,7 @@ function AbstractCore() {
         </mesh>
 
         <mesh>
-          <sphereGeometry args={[0.52, 48, 48]} />
+          <sphereGeometry args={[mobile ? 0.5 : 0.52, mobile ? 24 : 48, mobile ? 24 : 48]} />
           <meshStandardMaterial
             color="#1a1a2e"
             metalness={0.4}
@@ -136,7 +136,7 @@ export function HeroScene() {
       <Canvas
         dpr={mobile ? [1, 1.35] : [1, 1.75]}
         camera={{ position: [0, 0, 7.2], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
         <ambientLight intensity={isDark ? 0.35 : 0.6} />
         <pointLight position={[6, 4, 6]} intensity={isDark ? 90 : 60} color="#3b82f6" />
@@ -146,14 +146,16 @@ export function HeroScene() {
         <Suspense fallback={null}>
           <SceneRig />
           {MODEL_URL ? (
-            <ModelBoundary fallback={<AbstractCore />}>
+            <ModelBoundary fallback={<AbstractCore mobile={mobile} />}>
               <HeroModel />
             </ModelBoundary>
           ) : (
-            <AbstractCore />
+            <AbstractCore mobile={mobile} />
           )}
           <Sparkles count={mobile ? 40 : 90} scale={[14, 8, 8]} size={mobile ? 1.6 : 2.2} speed={0.35} color={isDark ? "#67e8f9" : "#818cf8"} />
-          <ContactShadows position={[0, -2.35, 0]} opacity={isDark ? 0.45 : 0.25} scale={12} blur={2.6} far={4} color={isDark ? "#000" : "#94a3b8"} />
+          {!mobile && (
+            <ContactShadows position={[0, -2.35, 0]} opacity={isDark ? 0.45 : 0.25} scale={12} blur={2.6} far={4} color={isDark ? "#000" : "#94a3b8"} />
+          )}
         </Suspense>
       </Canvas>
     </div>
