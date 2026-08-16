@@ -31,18 +31,18 @@
 }
 
 .dark {
-  --bg: 5 5 5;
-  --surface: 24 24 27;
-  --fg: 255 255 255;
-  --muted: 161 161 170;
-  --faint: 113 113 122;
-  --border: 63 63 70;
-  --accent: 56 189 248;
-  --accent-alt: 192 132 252;
-  --accent-glow: 99 102 241;
+  --bg: 0 0% 2%;
+  --surface: 240 6% 10%;
+  --fg: 0 0% 100%;
+  --muted: 240 5% 65%;
+  --faint: 240 4% 46%;
+  --border: 240 5% 26%;
+  --accent: 199 93% 60%;
+  --accent-alt: 270 95% 75%;
+  --accent-glow: 239 84% 67%;
 
-  --glass-bg: 24 24 27;
-  --glass-border: 63 63 70;
+  --glass-bg: 240 6% 10%;
+  --glass-border: 240 5% 26%;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   --card-shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.45);
