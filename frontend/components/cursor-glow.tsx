@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 export function CursorGlow() {
   const [enabled, setEnabled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
   const x = useMotionValue(-400);
   const y = useMotionValue(-400);
   const sx = useSpring(x, { stiffness: 120, damping: 25, mass: 0.5 });
@@ -25,14 +24,6 @@ export function CursorGlow() {
     return () => window.removeEventListener("mousemove", onMove);
   }, [x, y]);
 
-  useEffect(() => {
-    const checkDark = () => setIsDark(document.documentElement.classList.contains("dark"));
-    checkDark();
-    const observer = new MutationObserver(checkDark);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
-
   if (!enabled) return null;
 
   return (
@@ -42,9 +33,8 @@ export function CursorGlow() {
       style={{
         x: sx,
         y: sy,
-        background: isDark
-          ? "radial-gradient(circle, hsl(var(--accent-glow) / 0.14) 0%, transparent 60%)"
-          : "radial-gradient(circle, hsl(var(--accent-glow) / 0.08) 0%, transparent 60%)",
+        background:
+          "radial-gradient(circle, hsl(var(--accent-glow) / 0.14) 0%, transparent 60%)",
       }}
     />
   );
