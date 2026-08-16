@@ -4,29 +4,30 @@
 
 /* ─────────────────────────────────────────────────────────────
    Design tokens — Light / Day Mode (default)
-   Warm off-white background, white cards, dark text, blue accent.
+   Values are HSL triplets: hue  sat%  light%  (consumed via hsl()).
+   Warm off-white background, white cards, dark charcoal text.
    Contrast hierarchy (WCAG AA+):
-   primary text  #1a1a2e  |  secondary #475569  |  muted #64748b
+   primary #1a1a2d  |  secondary #3b4c63  |  muted #68758a  |  accent #2463eb
    ───────────────────────────────────────────────────────────── */
 :root {
-  --bg: 248 246 243;
-  --surface: 255 255 255;
-  --fg: 26 26 46;
-  --muted: 71 85 105;
-  --faint: 100 116 139;
-  --border: 226 232 240;
-  --accent: 37 99 235;
-  --accent-alt: 124 58 237;
-  --accent-glow: 99 102 241;
+  --bg: 40 33% 97%;
+  --surface: 0 0% 100%;
+  --fg: 240 27% 14%;
+  --muted: 215 28% 31%;
+  --faint: 215 16% 47%;
+  --border: 214 32% 91%;
+  --accent: 221 83% 53%;
+  --accent-alt: 263 84% 58%;
+  --accent-glow: 239 84% 67%;
 
-  --glass-bg: 255 255 255;
-  --glass-border: 226 232 240;
-  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --grid-opacity: 0.18;
-  --noise-opacity: 0.012;
-  --aurora-opacity: 0.08;
+  --glass-bg: 0 0% 100%;
+  --glass-border: 214 32% 91%;
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 24px rgba(0, 0, 0, 0.07);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 6px 24px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 6px 28px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --grid-opacity: 0.22;
+  --noise-opacity: 0.018;
+  --aurora-opacity: 0.14;
 }
 
 .dark {
@@ -122,10 +123,10 @@
 
   /* Glass morphism — adapts to theme via CSS vars */
   .glass {
-    background: hsl(var(--glass-bg) / 0.8);
+    background: hsl(var(--glass-bg) / 0.85);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border: 1px solid hsl(var(--glass-border) / 0.7);
+    border: 1px solid hsl(var(--glass-border) / 0.9);
     box-shadow: var(--glass-shadow);
   }
 
@@ -135,10 +136,10 @@
   }
 
   .glass-strong {
-    background: hsl(var(--glass-bg) / 0.92);
+    background: hsl(var(--glass-bg) / 0.95);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsl(var(--glass-border) / 0.85);
+    border: 1px solid hsl(var(--glass-border) / 0.95);
   }
 
   .dark .glass-strong {
@@ -147,7 +148,7 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-accent via-accent-alt to-cyan-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent via-accent-alt to-cyan-600 bg-clip-text text-transparent;
     background-size: 200% auto;
   }
 
@@ -203,14 +204,14 @@
   /* Light mode card styles */
   .card-light {
     background: hsl(var(--surface));
-    border: 1px solid hsl(var(--border) / 0.5);
+    border: 1px solid hsl(var(--border) / 0.65);
     box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .card-light:hover {
     box-shadow: var(--card-shadow-hover);
-    border-color: hsl(var(--accent) / 0.3);
+    border-color: hsl(var(--accent) / 0.45);
   }
 
   .dark .card-light {
@@ -265,11 +266,11 @@
 
   /* Status badge */
   .status-badge {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white;
   }
 
   .dark .status-badge {
-    @apply text-slate-950;
+    @apply from-blue-500 to-violet-500 text-slate-950;
   }
 
   /* Subject card */
