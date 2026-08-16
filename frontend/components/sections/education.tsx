@@ -43,7 +43,7 @@ export function Education() {
                       </h3>
                       <p className="mt-1 text-sm text-muted">{item.place}</p>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-950">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
                       <BookOpen size={12} aria-hidden />
                       {item.status}
                     </span>
@@ -61,7 +61,7 @@ export function Education() {
                       return (
                         <Reveal key={subject} delay={0.1}>
                           <div className="glass flex h-full items-center gap-3 rounded-xl px-4 py-3.5 transition hover:border-accent/50">
-                            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/25 via-accent-alt/20 to-violet-500/25 text-white ring-1 ring-accent/20">
+                            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 via-accent-alt/12 to-violet-500/15 text-accent ring-1 ring-accent/15 dark:from-blue-500/25 dark:via-accent-alt/20 dark:to-violet-500/25 dark:text-white dark:ring-accent/20">
                               <Icon size={16} aria-hidden />
                             </span>
                             <p className="text-sm font-semibold leading-snug">{subject}</p>
