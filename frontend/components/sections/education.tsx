@@ -55,16 +55,16 @@ export function Education() {
                     <Library size={15} className="text-accent" aria-hidden />
                     Subjects & Areas of Study
                   </p>
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
                     {item.subjects.map((subject) => {
                       const Icon = subjectIcons[subject] ?? BookOpen;
                       return (
-                        <Reveal key={subject} delay={0.1}>
-                          <div className="glass flex h-full items-center gap-3 rounded-xl px-4 py-3.5 transition hover:border-accent/50">
+                        <Reveal key={subject} delay={0.1} className="min-w-0">
+                          <div className="glass flex h-full min-w-0 items-center gap-2.5 rounded-xl px-3 py-3 transition hover:border-accent/50 sm:gap-3 sm:px-4 sm:py-3.5">
                             <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 via-accent-alt/12 to-violet-500/15 text-accent ring-1 ring-accent/15 dark:from-blue-500/25 dark:via-accent-alt/20 dark:to-violet-500/25 dark:text-white dark:ring-accent/20">
                               <Icon size={16} aria-hidden />
                             </span>
-                            <p className="text-sm font-semibold leading-snug">{subject}</p>
+                            <p className="min-w-0 break-words text-sm font-semibold leading-snug">{subject}</p>
                           </div>
                         </Reveal>
                       );
