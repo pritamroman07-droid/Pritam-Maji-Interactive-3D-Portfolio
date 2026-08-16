@@ -38,7 +38,7 @@ export function Contact() {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm text-fg outline-none transition placeholder:text-muted focus:border-accent/60";
+    "w-full rounded-xl border border-border/60 bg-white/80 px-4 py-3 text-sm text-fg outline-none transition placeholder:text-muted focus:border-accent/60 focus:shadow-[0_0_0_3px_hsl(var(--accent)/0.1)] dark:bg-surface/60 dark:focus:shadow-none";
 
   return (
     <section id="contact" className="section relative">
@@ -188,7 +188,7 @@ export function Contact() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="mt-4 flex items-center gap-2 text-sm font-medium text-emerald-400"
+                    className="mt-4 flex items-center gap-2 text-sm font-medium msg-success"
                     role="status"
                   >
                     <CheckCircle2 size={16} aria-hidden />
@@ -201,7 +201,7 @@ export function Contact() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="mt-4 text-sm font-medium text-red-400"
+                    className="mt-4 text-sm font-medium msg-error"
                     role="alert"
                   >
                     {error}
