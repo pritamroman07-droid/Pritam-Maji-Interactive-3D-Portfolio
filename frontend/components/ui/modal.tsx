@@ -38,7 +38,7 @@ export function Modal({
           aria-modal="true"
           aria-labelledby={labelledBy}
         >
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm dark:bg-black/70" onClick={onClose} />
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

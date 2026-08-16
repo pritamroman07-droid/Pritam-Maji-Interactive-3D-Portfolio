@@ -64,7 +64,7 @@ function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-border/60 bg-surface/60 px-4 py-3 text-sm outline-none transition placeholder:text-muted focus:border-accent/60";
+    "w-full rounded-xl border border-border/60 bg-white/80 px-4 py-3 text-sm outline-none transition placeholder:text-muted focus:border-accent/60 dark:bg-surface/60";
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
@@ -110,7 +110,7 @@ function Login({ onSuccess }: { onSuccess: (token: string) => void }) {
         </div>
 
         {error && (
-          <p role="alert" className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 p-3 text-sm text-red-300">
+          <p role="alert" className="mt-4 rounded-xl border border-red-400/30 bg-red-50 p-3 text-sm text-red-600 dark:bg-red-400/10 dark:text-red-300">
             {error}
           </p>
         )}
@@ -173,7 +173,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
 
   const cards = [
     { label: "Total Messages", value: messages.length, icon: Inbox, tint: "text-accent" },
-    { label: "Last Day Activity", value: days.length ? byDay[days[days.length - 1]] : 0, icon: BarChart3, tint: "text-cyan-300" },
+    { label: "Last Day Activity", value: days.length ? byDay[days[days.length - 1]] : 0, icon: BarChart3, tint: "text-cyan-600 dark:text-cyan-300" },
     { label: "Session", value: "12h", icon: Lock, tint: "text-accent-alt" },
   ];
 
@@ -220,7 +220,7 @@ function Dashboard({ token, onLogout }: { token: string; onLogout: () => void })
           </h2>
 
           {error && (
-            <p className="mb-4 rounded-xl border border-red-400/30 bg-red-400/10 p-4 text-sm text-red-300">
+            <p className="mb-4 rounded-xl border border-red-400/30 bg-red-50 p-4 text-sm text-red-600 dark:bg-red-400/10 dark:text-red-300">
               {error}
             </p>
           )}
