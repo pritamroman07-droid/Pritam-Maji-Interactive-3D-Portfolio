@@ -30,7 +30,9 @@ const config: Config = {
       boxShadow: {
         glow: "0 0 40px -8px hsl(var(--accent-glow))",
         "glow-lg": "0 0 80px -12px hsl(var(--accent-glow))",
-        glass: "0 8px 32px rgba(0,0,0,0.35)",
+        glass: "var(--glass-shadow)",
+        card: "var(--card-shadow)",
+        "card-hover": "var(--card-shadow-hover)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
