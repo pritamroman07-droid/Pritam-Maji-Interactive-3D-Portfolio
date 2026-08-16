@@ -36,7 +36,7 @@ export function Projects() {
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" aria-hidden />
-                    <span className="absolute bottom-4 left-4 rounded-full glass px-3 py-1 text-[11px] font-medium text-white">
+                    <span className="absolute bottom-4 left-4 rounded-full glass px-3 py-1 text-[11px] font-medium text-fg dark:text-white">
                       {project.owner}
                     </span>
                   </div>
