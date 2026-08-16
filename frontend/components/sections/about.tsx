@@ -12,7 +12,7 @@ function TimelineMarker({ item, index }: { item: TimelineItem; index: number }) 
   if (item.phase === "current") {
     return (
       <span className="absolute -left-[32px] top-2 flex h-3 w-3 items-center justify-center">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50" />
         <span className="relative inline-flex h-3 w-3 rounded-full bg-gradient-to-br from-accent to-accent-alt shadow-glow" />
       </span>
     );
@@ -20,7 +20,7 @@ function TimelineMarker({ item, index }: { item: TimelineItem; index: number }) 
 
   const Icon = phaseIcons[index % phaseIcons.length];
   return (
-    <span className="absolute -left-[41px] top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-surface shadow-glow transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+    <span className="absolute -left-[41px] top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/60 bg-surface shadow-card transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
       <Icon size={14} className="text-accent" aria-hidden />
     </span>
   );
@@ -48,7 +48,7 @@ export function About() {
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {about.focusAreas.map((area, i) => (
                 <Reveal key={area.title} delay={0.2 + i * 0.08}>
-                  <div className="glass h-full rounded-2xl p-5 transition hover:border-accent/50">
+                  <div className="card-light h-full rounded-2xl p-5">
                     {i === 0 && <Compass size={18} className="mb-3 text-accent" aria-hidden />}
                     {i === 1 && <Wrench size={18} className="mb-3 text-accent" aria-hidden />}
                     {i === 2 && <GraduationCap size={18} className="mb-3 text-accent" aria-hidden />}
@@ -61,7 +61,7 @@ export function About() {
           </div>
 
           <Reveal direction="left" delay={0.15}>
-            <div className="glass relative rounded-2xl p-6 sm:p-8">
+            <div className="card-light relative rounded-2xl p-6 sm:p-8">
               <h3 className="mb-6 flex items-center gap-2 font-display text-xl font-bold">
                 <GraduationCap size={20} className="text-accent" aria-hidden />
                 My Journey
@@ -81,8 +81,8 @@ export function About() {
                       <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-accent">
                         <span>{item.year}</span>
                         {item.phase === "current" && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-950">
-                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-slate-950/70" aria-hidden />
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm">
+                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/70" aria-hidden />
                             Current
                           </span>
                         )}
