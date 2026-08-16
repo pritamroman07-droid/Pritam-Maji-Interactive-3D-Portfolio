@@ -66,28 +66,28 @@ function AbstractCore() {
         <mesh>
           <torusKnotGeometry args={[1.15, 0.34, 220, 32]} />
           <meshStandardMaterial
-            color="#0c1220"
-            metalness={0.95}
-            roughness={0.18}
+            color="#1a1a2e"
+            metalness={0.9}
+            roughness={0.2}
             emissive="#3b82f6"
-            emissiveIntensity={0.22}
+            emissiveIntensity={0.18}
             wireframe={false}
           />
         </mesh>
 
         <mesh scale={1.65}>
           <icosahedronGeometry args={[1.15, 1]} />
-          <meshBasicMaterial color="#60a5fa" wireframe transparent opacity={0.14} />
+          <meshBasicMaterial color="#60a5fa" wireframe transparent opacity={0.12} />
         </mesh>
 
         <mesh>
           <sphereGeometry args={[0.52, 48, 48]} />
           <meshStandardMaterial
-            color="#0b0f1c"
+            color="#1a1a2e"
             metalness={0.4}
             roughness={0.05}
             emissive="#7c3aed"
-            emissiveIntensity={0.85}
+            emissiveIntensity={0.8}
           />
         </mesh>
       </Float>
@@ -113,6 +113,7 @@ function SceneRig() {
 
 export function HeroScene() {
   const [mobile, setMobile] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -122,6 +123,14 @@ export function HeroScene() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  useEffect(() => {
+    const checkDark = () => setIsDark(document.documentElement.classList.contains("dark"));
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="absolute inset-0" aria-hidden>
       <Canvas
@@ -129,10 +138,10 @@ export function HeroScene() {
         camera={{ position: [0, 0, 7.2], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.35} />
-        <pointLight position={[6, 4, 6]} intensity={90} color="#3b82f6" />
-        <pointLight position={[-6, -3, 4]} intensity={60} color="#a855f7" />
-        <directionalLight position={[0, 6, 4]} intensity={0.7} color="#ffffff" />
+        <ambientLight intensity={isDark ? 0.35 : 0.6} />
+        <pointLight position={[6, 4, 6]} intensity={isDark ? 90 : 60} color="#3b82f6" />
+        <pointLight position={[-6, -3, 4]} intensity={isDark ? 60 : 40} color="#a855f7" />
+        <directionalLight position={[0, 6, 4]} intensity={isDark ? 0.7 : 0.9} color="#ffffff" />
 
         <Suspense fallback={null}>
           <SceneRig />
@@ -143,8 +152,8 @@ export function HeroScene() {
           ) : (
             <AbstractCore />
           )}
-          <Sparkles count={mobile ? 40 : 90} scale={[14, 8, 8]} size={mobile ? 1.6 : 2.2} speed={0.35} color="#67e8f9" />
-          <ContactShadows position={[0, -2.35, 0]} opacity={0.45} scale={12} blur={2.6} far={4} color="#000" />
+          <Sparkles count={mobile ? 40 : 90} scale={[14, 8, 8]} size={mobile ? 1.6 : 2.2} speed={0.35} color={isDark ? "#67e8f9" : "#818cf8"} />
+          <ContactShadows position={[0, -2.35, 0]} opacity={isDark ? 0.45 : 0.25} scale={12} blur={2.6} far={4} color={isDark ? "#000" : "#94a3b8"} />
         </Suspense>
       </Canvas>
     </div>

@@ -61,6 +61,8 @@ export function Hero() {
       <div className="aurora aurora--blue -left-32 top-10 h-[420px] w-[420px] animate-blob" aria-hidden />
       <div className="aurora aurora--purple right-0 top-1/3 h-[460px] w-[460px] animate-blob [animation-delay:-6s]" aria-hidden />
       <div className="aurora aurora--cyan bottom-0 left-1/3 h-[380px] w-[380px] animate-blob [animation-delay:-12s]" aria-hidden />
+      {/* Light mode gradient overlay for better readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-base/60 via-transparent to-base/90 dark:from-transparent dark:via-transparent dark:to-transparent" aria-hidden />
 
       <div ref={contentRef} className="container-x relative z-10 grid flex-1 items-center gap-10 pt-28 lg:grid-cols-2 lg:pt-20">
         {/* Copy */}
