@@ -63,7 +63,7 @@ export function Contact() {
                     <p className="text-xs text-muted">Email</p>
                     <a
                       href={`mailto:${site.email}`}
-                      className="block truncate font-medium transition hover:text-accent"
+                      className="block break-all font-medium transition hover:text-accent"
                     >
                       {site.email}
                     </a>
@@ -103,14 +103,14 @@ export function Contact() {
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs text-muted">GitHub</p>
-                  <a
-                    href={site.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block truncate font-medium transition hover:text-accent"
-                  >
-                    {site.githubUsername}
-                  </a>
+<a
+                      href={site.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block break-all font-medium transition hover:text-accent"
+                    >
+                      {site.githubUsername}
+                    </a>
                 </div>
               </div>
             </Reveal>
