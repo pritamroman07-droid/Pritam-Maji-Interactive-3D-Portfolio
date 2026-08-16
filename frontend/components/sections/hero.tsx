@@ -71,7 +71,7 @@ export function Hero() {
             {hero.greeting}
           </p>
 
-          <h1 className="mt-3 font-display text-5xl font-black leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
+          <h1 className="mt-3 font-display text-[clamp(2.5rem,5vw+1.25rem,6rem)] font-black leading-[1.05] tracking-tight">
             <motion.span
               initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -90,8 +90,8 @@ export function Hero() {
             </motion.span>
           </h1>
 
-          <div className="mt-5 flex items-center gap-3 font-display text-xl font-semibold sm:text-2xl">
-            <Sparkles size={18} className="text-accent" aria-hidden />
+          <div className="mt-5 flex flex-wrap items-center gap-2 font-display text-[clamp(1.125rem,1.5vw+0.9rem,1.5rem)] font-semibold sm:gap-3">
+            <Sparkles size={18} className="shrink-0 text-accent" aria-hidden />
             <TypingText words={hero.roles} className="text-fg" />
           </div>
 
@@ -99,7 +99,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55 }}
-            className="mt-5 max-w-lg text-lg leading-relaxed text-muted"
+            className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg"
           >
             {hero.description}
           </motion.p>
@@ -175,7 +175,7 @@ export function Hero() {
 export function TechMarquee() {
   const items = [...marqueeItems, ...marqueeItems];
   return (
-    <div className="relative border-y border-border/40 py-5 [mask-image:linear-gradient(90deg,transparent,#000_15%,#000_85%,transparent)]">
+    <div className="relative overflow-hidden border-y border-border/40 py-5 [mask-image:linear-gradient(90deg,transparent,#000_15%,#000_85%,transparent)]">
       <div className="flex w-max marquee-track gap-12">
         {items.map((item, i) => (
           <span
