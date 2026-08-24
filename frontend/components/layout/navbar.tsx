@@ -34,6 +34,13 @@ export function Navbar() {
       if (!href.startsWith("#")) return;
       e.preventDefault();
       const target = href.slice(1);
+      
+      // If not on home page, navigate to home first
+      if (window.location.pathname !== "/") {
+        window.location.href = href;
+        return;
+      }
+      
       if (lenis) {
         lenis.scrollTo(`#${target}`, { offset: 0 });
       } else {
