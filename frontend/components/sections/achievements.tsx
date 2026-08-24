@@ -60,7 +60,7 @@ export function Achievements() {
 
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
                       <h3 className="font-display text-lg font-bold sm:text-xl">{item.title}</h3>
-                      <div className="mt-2 flex items-center gap-3 text-xs text-muted">
+                      <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-muted">
                         <span className="flex items-center gap-1">
                           <Calendar size={12} aria-hidden />
                           {item.date}
@@ -69,6 +69,11 @@ export function Achievements() {
                           <span className="flex items-center gap-1">
                             <Users size={12} aria-hidden />
                             {item.partner}
+                          </span>
+                        )}
+                        {item.status && (
+                          <span className="rounded-full bg-accent/20 px-2 py-0.5 text-[11px] font-semibold text-accent">
+                            {item.status}
                           </span>
                         )}
                       </div>
@@ -120,7 +125,7 @@ export function Achievements() {
             <h3 id="achievement-modal-title" className="font-display text-2xl font-bold">
               {selected.title}
             </h3>
-            <div className="mt-2 flex items-center gap-3 text-sm text-muted">
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted">
               <span className="flex items-center gap-1.5">
                 <Calendar size={14} aria-hidden />
                 {selected.date}
@@ -129,6 +134,11 @@ export function Achievements() {
                 <span className="flex items-center gap-1.5">
                   <Users size={14} aria-hidden />
                   Partner: {selected.partner}
+                </span>
+              )}
+              {selected.status && (
+                <span className="rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-accent">
+                  {selected.status}
                 </span>
               )}
             </div>

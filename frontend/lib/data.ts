@@ -256,6 +256,7 @@ export type Achievement = {
   category: "certificate" | "competition" | "event" | "project";
   partner?: string;
   highlight?: string;
+  status?: string;
 };
 
 export const achievements: Achievement[] = [
@@ -269,6 +270,37 @@ export const achievements: Achievement[] = [
     category: "competition",
     partner: "Mithu Paul",
     highlight: "2nd Place",
+  },
+  {
+    id: "internship-agnirath",
+    title: "Internship — Agnirath Aerospace and Defence Research Private Limited",
+    description:
+      "Successfully completed an internship at Agnirath Aerospace and Defence Research Private Limited, gaining practical industry exposure and improving my technical and professional skills.",
+    image: "/achievements/internship-agnirath.jpg",
+    date: "2026",
+    category: "certificate",
+    status: "Completed",
+  },
+  {
+    id: "hackathon-bitware-2k26",
+    title: "Brainware University Hackathon 2K26",
+    description:
+      "Participated in the Brainware University Hackathon 2K26, gaining hands-on experience in teamwork, problem-solving and developing innovative solutions.",
+    image: "/achievements/hackathon-bitware-2k26.jpg",
+    date: "2026",
+    category: "event",
+    status: "Participant",
+  },
+  {
+    id: "digontom-hackathon-2026",
+    title: "Top 6 — Digontom Hackathon 2026",
+    description:
+      "Ranked among the Top 6 in Digontom Hackathon 2026, demonstrating problem-solving, technical skills, creativity and teamwork.",
+    image: "/achievements/digontom-hackathon-2026.jpg",
+    date: "2026",
+    category: "competition",
+    highlight: "Top 6",
+    status: "Top 6",
   },
 ];
 
