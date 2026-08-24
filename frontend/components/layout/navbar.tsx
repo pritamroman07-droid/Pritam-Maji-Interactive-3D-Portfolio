@@ -34,15 +34,13 @@ export function Navbar() {
       if (!href.startsWith("#")) return;
       e.preventDefault();
       const target = href.slice(1);
-      
-      // Check if target element exists on current page
+
       const el = document.getElementById(target);
       if (!el) {
-        // Element not found, navigate to home page with hash
-        window.location.href = href;
+        window.location.href = "/" + href;
         return;
       }
-      
+
       if (lenis) {
         lenis.scrollTo(`#${target}`, { offset: 0 });
       } else {
