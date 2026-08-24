@@ -247,6 +247,31 @@ export const projects: Project[] = [
   },
 ];
 
+export type Achievement = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+  category: "certificate" | "competition" | "event" | "project";
+  partner?: string;
+  highlight?: string;
+};
+
+export const achievements: Achievement[] = [
+  {
+    id: "ideathon-2k26",
+    title: "2nd Place — Brainware University Ideathon 2K26",
+    description:
+      "Proud to secure 2nd place at the Brainware University Ideathon 2K26, showcasing innovation, creativity, and problem-solving. A memorable experience of turning an idea into something impactful through teamwork and dedication.",
+    image: "/achievements/ideathon-2k26.jpg",
+    date: "2026",
+    category: "competition",
+    partner: "Mithu Paul",
+    highlight: "2nd Place",
+  },
+];
+
 export const marqueeItems = [
   "C",
   "C++",
