@@ -1,26 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Award, Calendar, Trophy, BookOpen, Presentation, Users } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { achievements, type Achievement } from "@/lib/data";
-
-const categoryIcons = {
-  certificate: BookOpen,
-  competition: Trophy,
-  event: Presentation,
-  project: Award,
-};
-
-const categoryColors = {
-  certificate: "from-blue-500/20 to-cyan-500/20",
-  competition: "from-yellow-500/20 to-orange-500/20",
-  event: "from-purple-500/20 to-pink-500/20",
-  project: "from-green-500/20 to-emerald-500/20",
-};
 
 export function Achievements() {
   const [selected, setSelected] = useState<Achievement | null>(null);
@@ -36,10 +22,8 @@ export function Achievements() {
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {achievements.map((item, i) => {
-            const Icon = categoryIcons[item.category];
-            return (
-              <Reveal key={item.id} delay={Math.min(i * 0.08, 0.3)}>
+          {achievements.map((item, i) => (
+            <Reveal key={item.id} delay={Math.min(i * 0.08, 0.3)}>
                 <TiltCard className="group h-full rounded-2xl" intensity={6}>
                   <article className="glass flex h-full flex-col overflow-hidden rounded-2xl transition group-hover:border-accent/50">
                     <div className="relative aspect-[4/3] overflow-hidden bg-surface">
@@ -95,8 +79,7 @@ export function Achievements() {
                   </article>
                 </TiltCard>
               </Reveal>
-            );
-          })}
+          ))}
         </div>
 
         {achievements.length === 0 && (
