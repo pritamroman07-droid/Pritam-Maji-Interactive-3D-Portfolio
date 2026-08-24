@@ -69,4 +69,4 @@ export const api = {
   },
 };
 
-export const resumeDownloadUrl = `${API_URL}/api/resume`;
+export const resumeDownloadUrl = "/Pritam_Maji_Resume.pdf";
