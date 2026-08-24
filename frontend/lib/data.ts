@@ -264,7 +264,7 @@ export const achievements: Achievement[] = [
     title: "2nd Place — Brainware University Ideathon 2K26",
     description:
       "Proud to secure 2nd place at the Brainware University Ideathon 2K26, showcasing innovation, creativity, and problem-solving. A memorable experience of turning an idea into something impactful through teamwork and dedication.",
-    image: "/achievements/ideathon-2k26.jpg",
+    image: "/achievements/image.png",
     date: "2026",
     category: "competition",
     partner: "Mithu Paul",
