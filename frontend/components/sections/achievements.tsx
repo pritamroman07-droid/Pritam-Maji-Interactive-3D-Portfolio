@@ -43,10 +43,14 @@ export function Achievements() {
                 <TiltCard className="group h-full rounded-2xl" intensity={6}>
                   <article className="glass flex h-full flex-col overflow-hidden rounded-2xl transition group-hover:border-accent/50">
                     <div className="relative aspect-[4/3] overflow-hidden bg-surface">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${categoryColors[item.category]}`} aria-hidden />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Icon size={48} className="text-muted/30" aria-hidden />
-                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" aria-hidden />
                       {item.highlight && (
                         <span className="absolute top-3 right-3 rounded-full bg-accent/90 px-3 py-1 text-[11px] font-bold text-white">
@@ -109,13 +113,12 @@ export function Achievements() {
         {selected && (
           <div>
             <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-xl bg-surface">
-              <div className={`absolute inset-0 bg-gradient-to-br ${categoryColors[selected.category]}`} aria-hidden />
-              <div className="absolute inset-0 flex items-center justify-center">
-                {(() => {
-                  const Icon = categoryIcons[selected.category];
-                  return <Icon size={64} className="text-muted/30" aria-hidden />;
-                })()}
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="h-full w-full object-cover"
+              />
               {selected.highlight && (
                 <span className="absolute top-4 right-4 rounded-full bg-accent/90 px-4 py-1.5 text-sm font-bold text-white">
                   {selected.highlight}
