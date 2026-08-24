@@ -251,7 +251,7 @@ export type Achievement = {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   date: string;
   category: "certificate" | "competition" | "event" | "project";
   partner?: string;
@@ -276,7 +276,6 @@ export const achievements: Achievement[] = [
     title: "Internship — Agnirath Aerospace and Defence Research Private Limited",
     description:
       "Successfully completed an internship at Agnirath Aerospace and Defence Research Private Limited, gaining practical industry exposure and improving my technical and professional skills.",
-    image: "/achievements/internship-agnirath.jpg",
     date: "2026",
     category: "certificate",
     status: "Completed",
@@ -286,7 +285,6 @@ export const achievements: Achievement[] = [
     title: "Brainware University Hackathon 2K26",
     description:
       "Participated in the Brainware University Hackathon 2K26, gaining hands-on experience in teamwork, problem-solving and developing innovative solutions.",
-    image: "/achievements/hackathon-bitware-2k26.jpg",
     date: "2026",
     category: "event",
     status: "Participant",
@@ -296,7 +294,6 @@ export const achievements: Achievement[] = [
     title: "Top 6 — Digontom Hackathon 2026",
     description:
       "Ranked among the Top 6 in Digontom Hackathon 2026, demonstrating problem-solving, technical skills, creativity and teamwork.",
-    image: "/achievements/digontom-hackathon-2026.jpg",
     date: "2026",
     category: "competition",
     highlight: "Top 6",
