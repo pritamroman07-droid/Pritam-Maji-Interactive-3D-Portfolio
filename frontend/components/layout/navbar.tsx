@@ -35,8 +35,10 @@ export function Navbar() {
       e.preventDefault();
       const target = href.slice(1);
       
-      // If not on home page, navigate to home first
-      if (window.location.pathname !== "/") {
+      // Check if target element exists on current page
+      const el = document.getElementById(target);
+      if (!el) {
+        // Element not found, navigate to home page with hash
         window.location.href = href;
         return;
       }
@@ -44,8 +46,7 @@ export function Navbar() {
       if (lenis) {
         lenis.scrollTo(`#${target}`, { offset: 0 });
       } else {
-        const el = document.getElementById(target);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        el.scrollIntoView({ behavior: "smooth" });
       }
       setOpen(false);
       window.history.pushState(null, "", href);
