@@ -8,6 +8,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { achievements, type Achievement } from "@/lib/data";
 
+function getImages(item: Achievement): string[] {
+  if (item.images && item.images.length > 0) return item.images;
+  if (item.image) return [item.image];
+  return [];
+}
+
 export function Achievements() {
   const [selected, setSelected] = useState<Achievement | null>(null);
 
@@ -22,15 +28,17 @@ export function Achievements() {
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {achievements.map((item, i) => (
-            <Reveal key={item.id} delay={Math.min(i * 0.08, 0.3)}>
+          {achievements.map((item, i) => {
+            const imgs = getImages(item);
+            return (
+              <Reveal key={item.id} delay={Math.min(i * 0.08, 0.3)}>
                 <TiltCard className="group h-full rounded-2xl" intensity={6}>
                   <article className="glass flex h-full flex-col overflow-hidden rounded-2xl transition group-hover:border-accent/50">
-                    {item.image && (
+                    {imgs.length === 1 && (
                       <div className="relative aspect-[4/3] overflow-hidden bg-surface">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={item.image}
+                          src={imgs[0]}
                           alt={item.title}
                           loading="lazy"
                           decoding="async"
@@ -47,7 +55,32 @@ export function Achievements() {
                         </span>
                       </div>
                     )}
-                    {!item.image && (
+                    {imgs.length > 1 && (
+                      <div className="grid grid-cols-2 gap-0.5 overflow-hidden bg-surface">
+                        {imgs.slice(0, 2).map((src, idx) => (
+                          <div key={idx} className="relative aspect-[4/3] overflow-hidden">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={src}
+                              alt={`${item.title} ${idx + 1}`}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                        ))}
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" aria-hidden />
+                        {item.highlight && (
+                          <span className="absolute top-3 right-3 rounded-full bg-accent/90 px-3 py-1 text-[11px] font-bold text-white">
+                            {item.highlight}
+                          </span>
+                        )}
+                        <span className="absolute bottom-3 left-3 rounded-full glass px-3 py-1 text-[11px] font-medium text-fg dark:text-white">
+                          {item.category}
+                        </span>
+                      </div>
+                    )}
+                    {imgs.length === 0 && (
                       <div className="flex items-center justify-center bg-surface/50 py-8">
                         <span className="rounded-full glass px-4 py-2 text-sm font-medium text-fg dark:text-white">
                           {item.category}
@@ -93,7 +126,8 @@ export function Achievements() {
                   </article>
                 </TiltCard>
               </Reveal>
-          ))}
+            );
+          })}
         </div>
 
         {achievements.length === 0 && (
@@ -109,19 +143,27 @@ export function Achievements() {
       <Modal open={Boolean(selected)} onClose={() => setSelected(null)} labelledBy="achievement-modal-title">
         {selected && (
           <div>
-            {selected.image && (
-              <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-xl bg-surface">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={selected.image}
-                  alt={selected.title}
-                  className="h-full w-full object-cover"
-                />
-                {selected.highlight && (
-                  <span className="absolute top-4 right-4 rounded-full bg-accent/90 px-4 py-1.5 text-sm font-bold text-white">
-                    {selected.highlight}
-                  </span>
-                )}
+            {getImages(selected).length > 0 && (
+              <div
+                className={`mb-5 overflow-hidden rounded-xl bg-surface ${
+                  getImages(selected).length > 1 ? "grid grid-cols-2 gap-0.5" : ""
+                }`}
+              >
+                {getImages(selected).map((src, idx) => (
+                  <div key={idx} className="relative overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${selected.title} ${getImages(selected).length > 1 ? idx + 1 : ""}`}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                    {selected.highlight && idx === 0 && (
+                      <span className="absolute top-4 right-4 rounded-full bg-accent/90 px-4 py-1.5 text-sm font-bold text-white">
+                        {selected.highlight}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
             <h3 id="achievement-modal-title" className="font-display text-2xl font-bold">

@@ -265,6 +265,7 @@ export type Achievement = {
   title: string;
   description: string;
   image?: string;
+  images?: string[];
   date: string;
   category: "certificate" | "competition" | "event" | "project";
   partner?: string;
@@ -298,6 +299,7 @@ export const achievements: Achievement[] = [
     title: "Brainware University Hackathon 2K26",
     description:
       "Participated in the Brainware University Hackathon 2K26, gaining hands-on experience in teamwork, problem-solving and developing innovative solutions.",
+    images: ["/achievements/bwu1.jpeg", "/achievements/bwu2.jpeg"],
     date: "2026",
     category: "event",
     status: "Participant",
