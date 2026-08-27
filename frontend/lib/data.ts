@@ -290,6 +290,7 @@ export const achievements: Achievement[] = [
     title: "Internship — Agnirath Aerospace and Defence Research Private Limited",
     description:
       "Successfully completed an internship at Agnirath Aerospace and Defence Research Private Limited, gaining practical industry exposure and improving my technical and professional skills.",
+    image: "/achievements/bwu5.jpeg",
     date: "2026",
     category: "certificate",
     status: "Completed",
