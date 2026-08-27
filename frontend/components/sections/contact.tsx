@@ -51,7 +51,7 @@ export function Contact() {
           description="Have a project idea, an internship opportunity, or just want to connect? My inbox is open."
         />
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-5">
             <Reveal>
               <div className="glass rounded-2xl p-6 transition hover:border-accent/50">
@@ -173,7 +173,7 @@ export function Contact() {
                   required
                   minLength={10}
                   maxLength={2000}
-                  rows={5}
+                  rows={4}
                   value={form.message}
                   onChange={set("message")}
                   placeholder="Tell me about your project…"

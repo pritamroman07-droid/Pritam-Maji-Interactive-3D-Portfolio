@@ -51,7 +51,7 @@ export function Education() {
 
                   <p className="mt-4 max-w-2xl leading-relaxed text-muted">{item.description}</p>
 
-                  <p className="mt-8 mb-3 flex items-center gap-2 font-display text-sm font-bold">
+                  <p className="mt-6 mb-3 flex items-center gap-2 font-display text-sm font-bold">
                     <Library size={15} className="text-accent" aria-hidden />
                     Subjects & Areas of Study
                   </p>

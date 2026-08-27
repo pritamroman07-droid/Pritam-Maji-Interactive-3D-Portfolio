@@ -37,7 +37,7 @@ export function About() {
           description="Computer Science student, curious programmer and builder of practical web applications."
         />
 
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           <div>
             {about.paragraphs.map((paragraph, i) => (
               <Reveal key={i} delay={i * 0.08}>
@@ -45,7 +45,7 @@ export function About() {
               </Reveal>
             ))}
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
               {about.focusAreas.map((area, i) => (
                 <Reveal key={area.title} delay={0.2 + i * 0.08}>
                   <div className="card-light h-full rounded-2xl p-5">
@@ -71,7 +71,7 @@ export function About() {
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="relative origin-top space-y-7 border-l border-border/60 pl-6"
+                className="relative origin-top space-y-6 border-l border-border/60 pl-6"
               >
                 {timeline.map((item, i) => (
                   <Reveal key={`${item.year}-${item.title}`} delay={0.1 + i * 0.1} className="relative">

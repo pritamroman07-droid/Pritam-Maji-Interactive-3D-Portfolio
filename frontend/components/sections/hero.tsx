@@ -134,7 +134,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-10 flex items-center justify-between gap-6 sm:max-w-md"
+            className="mt-8 flex items-center justify-between gap-6 sm:max-w-md"
           >
             <p className="font-mono text-sm italic text-muted">Learning by building.</p>
             <Clock />
@@ -143,7 +143,7 @@ export function Hero() {
 
         {/* 3D — skipped entirely when the user prefers reduced motion */}
         {!reducedMotion && (
-          <div className="relative h-[360px] sm:h-[480px] lg:h-[640px]" aria-hidden>
+          <div className="relative h-[320px] sm:h-[400px] lg:h-[520px]" aria-hidden>
             <HeroScene />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-base to-transparent" />
           </div>

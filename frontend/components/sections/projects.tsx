@@ -93,7 +93,7 @@ export function Projects() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-8 text-center text-muted">
+          <p className="mt-6 text-center text-muted">
             More experiments live on{" "}
             <a
               href="https://github.com/pritamroman07-droid"

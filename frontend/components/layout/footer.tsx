@@ -38,7 +38,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border/50">
       <div className="aurora aurora--purple -bottom-32 left-1/4 h-72 w-72" aria-hidden />
-      <div className="container-x relative py-16">
+      <div className="container-x relative py-12">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-2xl font-bold">
@@ -93,7 +93,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-6 sm:flex-row">
           <p className="text-xs text-muted">© 2026 Pritam Maji. All rights reserved.</p>
           <p className={cn("font-mono text-xs text-muted")}>
             {visitors !== null

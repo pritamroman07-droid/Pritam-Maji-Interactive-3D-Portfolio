@@ -69,7 +69,7 @@ export function Skills() {
           ))}
         </div>
 
-        <h3 className="mb-5 mt-14 font-mono text-xs uppercase tracking-[0.3em] text-muted">
+        <h3 className="mb-5 mt-10 font-mono text-xs uppercase tracking-[0.3em] text-muted">
           Creative
         </h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
