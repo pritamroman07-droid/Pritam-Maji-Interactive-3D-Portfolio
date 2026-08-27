@@ -1,6 +1,6 @@
 "use client";
 
-import { Atom, BookOpen, Braces, Code2, Database, GraduationCap, Library, Network, Sigma, Trophy } from "lucide-react";
+import { Atom, BookOpen, Braces, Code2, Database, GraduationCap, Library, Network, Sigma, Trophy, BarChart3 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { education, semesterRecords } from "@/lib/data";
@@ -33,6 +33,30 @@ function CgpaCard({ label, cgpa, index }: { label: string; cgpa: number; index: 
         >
           {display}
         </span>
+      </div>
+    </Reveal>
+  );
+}
+
+function AverageCard({ average }: { average: number }) {
+  const { ref, display } = useCountUp(average, 2000);
+
+  return (
+    <Reveal delay={0.15}>
+      <div className="glass flex items-center gap-5 rounded-2xl px-5 py-5 transition hover:border-accent/50 sm:px-8 sm:py-6">
+        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 via-accent-alt/12 to-violet-500/15 text-accent ring-1 ring-accent/15 dark:from-blue-500/25 dark:via-accent-alt/20 dark:to-violet-500/25 dark:text-white dark:ring-accent/20">
+          <BarChart3 size={20} aria-hidden />
+        </span>
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">Average across {semesterRecords.length} semesters</p>
+          <span
+            ref={ref}
+            className="mt-1 block font-display text-4xl font-black tabular-nums tracking-tight text-gradient sm:text-5xl"
+            aria-label={`Average SGPA: ${average}`}
+          >
+            {display}
+          </span>
+        </div>
       </div>
     </Reveal>
   );
@@ -108,11 +132,26 @@ export function Education() {
                   <Trophy size={15} className="text-accent" aria-hidden />
                   University Record
                 </p>
+
+                <p className="mb-3 flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                  <span className="inline-block h-px w-6 bg-gradient-to-r from-accent to-transparent" />
+                  CGPA
+                </p>
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
                   {semesterRecords.map((record, i) => (
                     <CgpaCard key={record.semester} label={record.label} cgpa={record.cgpa} index={i} />
                   ))}
                 </div>
+
+                <div className="my-6 h-px bg-gradient-to-r from-border/60 via-border/30 to-transparent" />
+
+                <p className="mb-3 flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                  <span className="inline-block h-px w-6 bg-gradient-to-r from-accent to-transparent" />
+                  Total Average SGPA
+                </p>
+                <AverageCard
+                  average={Number((semesterRecords.reduce((sum, r) => sum + r.cgpa, 0) / semesterRecords.length).toFixed(2))}
+                />
               </div>
             </div>
           </Reveal>
