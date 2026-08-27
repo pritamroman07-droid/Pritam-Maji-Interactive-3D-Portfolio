@@ -1,9 +1,10 @@
 "use client";
 
-import { Atom, BookOpen, Braces, Code2, Database, GraduationCap, Library, Network, Sigma } from "lucide-react";
+import { Atom, BookOpen, Braces, Code2, Database, GraduationCap, Library, Network, Sigma, Trophy } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { education } from "@/lib/data";
+import { education, semesterRecords } from "@/lib/data";
+import { useCountUp } from "@/lib/use-count-up";
 
 const subjectIcons: Record<string, typeof Code2> = {
   "Software Engineering": Code2,
@@ -14,6 +15,28 @@ const subjectIcons: Record<string, typeof Code2> = {
   "Data Structures": Network,
   "Database Management": Database,
 };
+
+function CgpaCard({ label, cgpa, index }: { label: string; cgpa: number; index: number }) {
+  const { ref, display } = useCountUp(cgpa, 1800);
+
+  return (
+    <Reveal delay={0.1 + index * 0.08} className="min-w-0">
+      <div className="glass group flex h-full flex-col items-center rounded-2xl px-4 py-5 text-center transition hover:border-accent/50 sm:px-6 sm:py-6">
+        <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 via-accent-alt/12 to-violet-500/15 text-accent ring-1 ring-accent/15 dark:from-blue-500/25 dark:via-accent-alt/20 dark:to-violet-500/25 dark:text-white dark:ring-accent/20">
+          <Trophy size={16} aria-hidden />
+        </span>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{label}</p>
+        <span
+          ref={ref}
+          className="mt-2 block font-display text-3xl font-black tabular-nums tracking-tight text-gradient sm:text-4xl"
+          aria-label={`CGPA: ${cgpa}`}
+        >
+          {display}
+        </span>
+      </div>
+    </Reveal>
+  );
+}
 
 export function Education() {
   return (
@@ -74,6 +97,25 @@ export function Education() {
               </div>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl">
+          <Reveal>
+            <div className="glass relative overflow-hidden rounded-2xl p-6 sm:p-8">
+              <div className="aurora aurora--purple -right-20 -top-20 h-56 w-56 opacity-25" aria-hidden />
+              <div className="relative">
+                <p className="mb-6 flex items-center gap-2 font-display text-sm font-bold">
+                  <Trophy size={15} className="text-accent" aria-hidden />
+                  University Record
+                </p>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+                  {semesterRecords.map((record, i) => (
+                    <CgpaCard key={record.semester} label={record.label} cgpa={record.cgpa} index={i} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

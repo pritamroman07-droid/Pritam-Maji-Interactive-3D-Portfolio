@@ -130,6 +130,19 @@ export const creativeSkills: Skill[] = [
   },
 ];
 
+export type SemesterRecord = {
+  semester: number;
+  label: string;
+  cgpa: number;
+};
+
+export const semesterRecords: SemesterRecord[] = [
+  { semester: 1, label: "Semester 1", cgpa: 6.33 },
+  { semester: 2, label: "Semester 2", cgpa: 6.66 },
+  { semester: 3, label: "Semester 3", cgpa: 7.89 },
+  { semester: 4, label: "Semester 4", cgpa: 7.85 },
+];
+
 export type EducationItem = {
   title: string;
   place: string;
