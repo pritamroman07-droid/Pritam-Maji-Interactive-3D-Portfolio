@@ -309,6 +309,7 @@ export const achievements: Achievement[] = [
     title: "Top 6 — Digontom Hackathon 2026",
     description:
       "Ranked among the Top 6 in Digontom Hackathon 2026, demonstrating problem-solving, technical skills, creativity and teamwork.",
+    image: "/achievements/bwu3.png",
     date: "2026",
     category: "competition",
     highlight: "Top 6",
