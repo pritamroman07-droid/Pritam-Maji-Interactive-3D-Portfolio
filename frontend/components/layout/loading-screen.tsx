@@ -1,11 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function LoadingScreen() {
   const [loading, setLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -14,7 +15,13 @@ export function LoadingScreen() {
     let raf: number;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
-      setProgress(Math.round(t * 100));
+      const pct = Math.round(t * 100);
+      if (progressRef.current) {
+        progressRef.current.style.width = `${pct}%`;
+      }
+      if (textRef.current) {
+        textRef.current.textContent = `Loading — ${pct}%`;
+      }
       if (t < 1) {
         raf = requestAnimationFrame(tick);
       } else {
@@ -49,13 +56,17 @@ export function LoadingScreen() {
             <span className="absolute inset-0 rounded-2xl bg-accent/10 animate-pulseglow" />
           </motion.div>
           <div className="h-px w-48 overflow-hidden rounded-full bg-border/50">
-            <motion.div
+            <div
+              ref={progressRef}
               className="h-full bg-gradient-to-r from-accent to-accent-alt"
-              style={{ width: `${progress}%` }}
+              style={{ width: "0%" }}
             />
           </div>
-          <p className="mt-3 font-mono text-xs tracking-widest text-muted">
-            Loading — {progress}%
+          <p
+            ref={textRef}
+            className="mt-3 font-mono text-xs tracking-widest text-muted"
+          >
+            Loading — 0%
           </p>
         </motion.div>
       )}

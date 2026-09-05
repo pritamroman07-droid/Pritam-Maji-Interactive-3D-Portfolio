@@ -35,11 +35,16 @@ export function useCountUp(target: number, duration = 1800): {
           const progress = Math.min(elapsed / duration, 1);
           const eased = easeOutExpo(progress);
           const current = eased * target;
-          setDisplay(current.toFixed(2));
+          if (el) {
+            el.textContent = current.toFixed(2);
+          }
           if (progress < 1) {
             requestAnimationFrame(animate);
           } else {
             setDisplay(target.toFixed(2));
+            if (el) {
+              el.textContent = target.toFixed(2);
+            }
           }
         };
         requestAnimationFrame(animate);
@@ -48,7 +53,9 @@ export function useCountUp(target: number, duration = 1800): {
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [target, duration]);
 
   return { ref, display };

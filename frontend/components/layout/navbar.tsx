@@ -3,20 +3,34 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "@/components/theme-provider";
 import { useLenis } from "@/lib/lenis";
 import { navLinks } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolledRef = useRef(false);
+  const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
   const lenis = useLenis();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      const isScrolled = window.scrollY > 40;
+      if (isScrolled !== scrolledRef.current) {
+        scrolledRef.current = isScrolled;
+        if (headerRef.current) {
+          if (isScrolled) {
+            headerRef.current.classList.add("glass-strong", "shadow-card", "dark:shadow-glass", "py-3");
+            headerRef.current.classList.remove("bg-transparent", "py-5");
+          } else {
+            headerRef.current.classList.remove("glass-strong", "shadow-card", "dark:shadow-glass", "py-3");
+            headerRef.current.classList.add("bg-transparent", "py-5");
+          }
+        }
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -55,12 +69,8 @@ export function Navbar() {
   return (
     <>
       <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-[80] transition-all duration-500",
-          scrolled
-            ? "glass-strong py-3 shadow-card dark:shadow-glass"
-            : "bg-transparent py-5",
-        )}
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-[80] bg-transparent py-5 transition-all duration-500"
       >
         <nav className="container-x flex items-center justify-between">
           <Link

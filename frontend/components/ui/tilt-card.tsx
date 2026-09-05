@@ -1,7 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useCallback, useRef, type ReactNode } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +16,6 @@ export function TiltCard({
   glare?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
   const sx = useSpring(px, { stiffness: 200, damping: 20 });
@@ -28,18 +26,20 @@ export function TiltCard({
   const glareY = useTransform(sy, [0, 1], ["0%", "100%"]);
   const glareBackground = useMotionTemplate`radial-gradient(600px circle at ${glareX} ${glareY}, hsl(var(--accent) / 0.12), transparent 45%)`;
 
-  const onMove = (e: React.MouseEvent) => {
-    if (reduced) return;
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    px.set((e.clientX - rect.left) / rect.width);
-    py.set((e.clientY - rect.top) / rect.height);
-  };
+  const onMove = useCallback(
+    (e: React.MouseEvent) => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (!rect) return;
+      px.set((e.clientX - rect.left) / rect.width);
+      py.set((e.clientY - rect.top) / rect.height);
+    },
+    [px, py],
+  );
 
-  const onLeave = () => {
+  const onLeave = useCallback(() => {
     px.set(0.5);
     py.set(0.5);
-  };
+  }, [px, py]);
 
   return (
     <motion.div
@@ -47,12 +47,12 @@ export function TiltCard({
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{
-        rotateX: reduced ? 0 : rotateX,
-        rotateY: reduced ? 0 : rotateY,
+        rotateX,
+        rotateY,
         transformStyle: "preserve-3d",
         perspective: 900,
       }}
-      whileHover={reduced ? undefined : { scale: 1.02 }}
+      whileHover={{ scale: 1.02 }}
       className={cn("relative will-change-transform", className)}
     >
       {children}
