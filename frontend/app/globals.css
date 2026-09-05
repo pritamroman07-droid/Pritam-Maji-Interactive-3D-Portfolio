@@ -373,12 +373,35 @@ svg {
   height: auto;
 }
 
+/* Contain paint & layout on sections for rendering performance */
+.section {
+  contain: layout style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* Contain on cards to isolate repaints */
+.glass,
+.card-light,
+.skill-card {
+  contain: layout style paint;
+}
+
 /* Mobile performance: lighter blur + less paint cost */
 @media (max-width: 640px) {
   .glass,
   .glass-strong {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+  }
+
+  .aurora {
+    filter: blur(60px);
+  }
+
+  .section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
   }
 }
 
@@ -435,16 +458,18 @@ svg {
   }
 }
 
-/* Smooth theme transition */
-* {
+/* Smooth theme transition — only apply to explicitly themed elements
+   instead of *, which causes jank on every element during scroll/hover */
+html,
+body,
+.glass,
+.glass-strong,
+.card-light,
+.skill-card,
+.chip,
+.btn-primary,
+.navbar-scrolled {
   transition-property: background-color, border-color, color, box-shadow;
   transition-timing-function: ease;
   transition-duration: 0.15s;
-}
-
-/* Exclude animations from theme transition */
-.animated,
-[class*="animate-"],
-[class*="motion-"] {
-  transition-property: none !important;
 }

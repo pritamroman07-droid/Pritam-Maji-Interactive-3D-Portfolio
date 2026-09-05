@@ -31,6 +31,8 @@ export function Projects() {
                     <img
                       src={project.image}
                       alt={`${project.title} — GitHub repository preview`}
+                      width={640}
+                      height={360}
                       loading="lazy"
                       decoding="async"
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
@@ -116,6 +118,8 @@ export function Projects() {
               <img
                 src={selected.image}
                 alt={`${selected.title} — GitHub repository preview`}
+                width={800}
+                height={450}
                 className="h-full w-full object-cover"
               />
             </div>

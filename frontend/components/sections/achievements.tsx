@@ -33,6 +33,8 @@ function AchievementCard({ item }: { item: Achievement }) {
               <img
                 src={imgs[imgIndex]}
                 alt={item.title}
+                width={512}
+                height={384}
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
@@ -169,6 +171,8 @@ function ModalGallery({ item }: { item: Achievement }) {
       <img
         src={imgs[idx]}
         alt={`${item.title} ${idx + 1}`}
+        width={800}
+        height={600}
         className="aspect-[4/3] w-full object-cover"
       />
       {item.highlight && (
