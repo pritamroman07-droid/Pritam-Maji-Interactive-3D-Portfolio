@@ -2,7 +2,6 @@
 
 A full-stack personal portfolio built with Next.js, Three.js, and Express — featuring a 3D hero scene, cinematic scroll animations, dark/light modes, and a production-ready REST API.
 
-**Live Site:** [pritammaji.dev](https://pritammaji.dev)
 
 ---
 
