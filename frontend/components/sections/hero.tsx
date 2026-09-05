@@ -5,14 +5,10 @@ import { ArrowDown, ArrowRight, Download, Sparkles } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Clock } from "@/components/clock";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { TypingText } from "@/components/ui/typing-text";
 import { hero, marqueeItems } from "@/lib/data";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HeroScene = dynamic(() => import("@/components/three/hero-scene").then((m) => m.HeroScene), {
   ssr: false,
@@ -37,22 +33,38 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const ctx = gsap.context(() => {
-      gsap.to(contentRef.current, {
-        yPercent: 22,
-        opacity: 0.15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    if (reducedMotion) return;
+
+    let ctx: { revert: () => void } | null = null;
+
+    const loadGsap = async () => {
+      const gsapModule = await import("gsap");
+      const scrollTriggerModule = await import("gsap/ScrollTrigger");
+      const gsap = gsapModule.default;
+      gsap.registerPlugin(scrollTriggerModule.ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        if (!contentRef.current || !sectionRef.current) return;
+        gsap.to(contentRef.current, {
+          yPercent: 22,
+          opacity: 0.15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }, sectionRef);
+    };
+
+    loadGsap();
+
+    return () => {
+      ctx?.revert();
+    };
+  }, [reducedMotion]);
 
   return (
     <section id="home" ref={sectionRef} className="relative flex min-h-screen flex-col overflow-hidden">
@@ -151,23 +163,25 @@ export function Hero() {
       </div>
 
       {/* scroll hint */}
-      <motion.a
-        href="#about"
-        aria-label="Scroll to about section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-muted transition hover:text-accent"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
+      {!reducedMotion && (
+        <motion.a
+          href="#about"
+          aria-label="Scroll to about section"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6 }}
+          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-muted transition hover:text-accent"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.a>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+            <ArrowDown size={16} />
+          </motion.div>
+        </motion.a>
+      )}
     </section>
   );
 }

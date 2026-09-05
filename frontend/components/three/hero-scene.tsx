@@ -7,16 +7,6 @@ import * as THREE from "three";
 
 const MODEL_URL = process.env.NEXT_PUBLIC_MODEL_URL;
 
-/**
- * ─────────────────────────────────────────────────────────────
- * 3D MODEL PLACEHOLDER
- * Drop your photo-based 3D model (.glb) into /public/models and
- * set NEXT_PUBLIC_MODEL_URL=/models/your-model.glb in .env.local
- * The scene will automatically render it instead of the
- * abstract core below. See public/models/README.md.
- * ─────────────────────────────────────────────────────────────
- */
-
 class ModelBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -53,10 +43,8 @@ function AbstractCore({ mobile = false }: { mobile?: boolean }) {
     const g = group.current;
     if (!g) return;
     if (reduced.current) return;
-    // mouse-follow rotation
     g.rotation.y += (state.pointer.x * 0.55 - g.rotation.y) * delta * 2.2;
     g.rotation.x += (state.pointer.y * -0.35 - g.rotation.x) * delta * 2.2;
-    // slow self-rotation
     g.rotation.z += delta * 0.025;
   });
 
@@ -64,14 +52,13 @@ function AbstractCore({ mobile = false }: { mobile?: boolean }) {
     <group ref={group} position={[0, 0, 0]}>
       <Float speed={1.6} rotationIntensity={0.5} floatIntensity={1.2}>
         <mesh>
-          <torusKnotGeometry args={[1.15, 0.34, mobile ? 96 : 220, mobile ? 20 : 32]} />
+          <torusKnotGeometry args={[1.15, 0.34, mobile ? 64 : 128, mobile ? 16 : 24]} />
           <meshStandardMaterial
             color="#1a1a2e"
             metalness={0.9}
             roughness={0.2}
             emissive="#3b82f6"
             emissiveIntensity={0.18}
-            wireframe={false}
           />
         </mesh>
 
@@ -81,7 +68,7 @@ function AbstractCore({ mobile = false }: { mobile?: boolean }) {
         </mesh>
 
         <mesh>
-          <sphereGeometry args={[mobile ? 0.5 : 0.52, mobile ? 24 : 48, mobile ? 24 : 48]} />
+          <sphereGeometry args={[mobile ? 0.5 : 0.52, mobile ? 16 : 32, mobile ? 16 : 32]} />
           <meshStandardMaterial
             color="#1a1a2e"
             metalness={0.4}
@@ -153,7 +140,7 @@ export function HeroScene() {
     <div ref={wrapRef} className="absolute inset-0" aria-hidden>
       <Canvas
         frameloop={active ? "always" : "never"}
-        dpr={mobile ? [1, 1.35] : [1, 1.75]}
+        dpr={mobile ? [1, 1.25] : [1, 1.5]}
         camera={{ position: [0, 0, 7.2], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
@@ -171,7 +158,7 @@ export function HeroScene() {
           ) : (
             <AbstractCore mobile={mobile} />
           )}
-          <Sparkles count={mobile ? 40 : 90} scale={[14, 8, 8]} size={mobile ? 1.6 : 2.2} speed={0.35} color={isDark ? "#67e8f9" : "#818cf8"} />
+          <Sparkles count={mobile ? 24 : 50} scale={[14, 8, 8]} size={mobile ? 1.4 : 2} speed={0.35} color={isDark ? "#67e8f9" : "#818cf8"} />
           {!mobile && (
             <ContactShadows position={[0, -2.35, 0]} opacity={isDark ? 0.45 : 0.25} scale={12} blur={2.6} far={4} color={isDark ? "#000" : "#94a3b8"} />
           )}
