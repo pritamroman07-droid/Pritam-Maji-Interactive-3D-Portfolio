@@ -1,8 +1,7 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { useEffect, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useRef, useCallback, type ReactNode } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function MagneticButton({
   children,
@@ -13,29 +12,32 @@ export function MagneticButton({
   className?: string;
   strength?: number;
 }) {
-  const reduced = useReducedMotion();
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [enabled, setEnabled] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 180, damping: 16 });
+  const sy = useSpring(y, { stiffness: 180, damping: 16 });
 
-  useEffect(() => {
-    setEnabled(window.matchMedia("(pointer: fine)").matches);
-  }, []);
+  const onMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      x.set((e.clientX - rect.left - rect.width / 2) * strength);
+      y.set((e.clientY - rect.top - rect.height / 2) * strength);
+    },
+    [x, y, strength],
+  );
 
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!enabled || reduced) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    setPos({
-      x: (e.clientX - rect.left - rect.width / 2) * strength,
-      y: (e.clientY - rect.top - rect.height / 2) * strength,
-    });
-  };
+  const onLeave = useCallback(() => {
+    x.set(0);
+    y.set(0);
+  }, [x, y]);
 
   return (
     <motion.div
+      ref={ref}
       onMouseMove={onMove}
-      onMouseLeave={() => setPos({ x: 0, y: 0 })}
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: "spring", stiffness: 180, damping: 16 }}
+      onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }}
       className={className}
     >
       {children}

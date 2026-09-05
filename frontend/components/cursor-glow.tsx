@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export function CursorGlow() {
+export const CursorGlow = memo(function CursorGlow() {
   const [enabled, setEnabled] = useState(false);
   const x = useMotionValue(-400);
   const y = useMotionValue(-400);
@@ -29,7 +29,7 @@ export function CursorGlow() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[5] h-[500px] w-[500px] rounded-full"
+      className="pointer-events-none fixed left-0 top-0 z-[5] h-[500px] w-[500px] rounded-full will-change-transform"
       style={{
         x: sx,
         y: sy,
@@ -38,4 +38,4 @@ export function CursorGlow() {
       }}
     />
   );
-}
+});
